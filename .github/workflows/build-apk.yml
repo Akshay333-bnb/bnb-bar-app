@@ -1,0 +1,76 @@
+name: Build Android APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android SDK
+        run: |
+          yes | sdkmanager --licenses || true
+          sdkmanager "platforms;android-35" "build-tools;35.0.0"
+
+      - name: Prepare Android project
+        run: |
+          mkdir -p app/src/main/java/com/barefootandbeyond/inventory
+          mkdir -p app/src/main/assets
+          mkdir -p app/src/main/res/values
+
+          cp MainActivity.java app/src/main/java/com/barefootandbeyond/inventory/MainActivity.java
+          cp index.html app/src/main/assets/index.html
+          cp AndroidManifest.xml app/src/main/AndroidManifest.xml
+          cp colors.xml app/src/main/res/values/colors.xml
+          cp strings.xml app/src/main/res/values/strings.xml
+          cp styles.xml app/src/main/res/values/styles.xml
+
+          cat > app/build.gradle <<'EOF'
+          plugins {
+              id 'com.android.application'
+          }
+
+          android {
+              namespace 'com.barefootandbeyond.inventory'
+              compileSdk 35
+
+              defaultConfig {
+                  applicationId 'com.barefootandbeyond.inventory'
+                  minSdk 23
+                  targetSdk 35
+                  versionCode 1
+                  versionName '1.0'
+              }
+          }
+          EOF
+
+      - name: Install Gradle
+        run: |
+          curl -L -o gradle.zip https://services.gradle.org/distributions/gradle-8.7-bin.zip
+          unzip -q gradle.zip
+          echo "$PWD/gradle-8.7/bin" >> "$GITHUB_PATH"
+
+      - name: Build APK
+        run: gradle --no-daemon --stacktrace assembleDebug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Barefoot-Beyond-Bar-Inventory-APK
+          path: app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
