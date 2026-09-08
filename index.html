@@ -1,22 +1,23 @@
 <!doctype html>
+<!-- BnB TONIC NAV FIX v11: full-width bottom bar + beer mug -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#17100d">
+<meta name="theme-color" content="#2b1a12"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
 <title>Barefoot & Beyond — Bar Inventory</title>
 <style>
 :root{--bg:#f5efe8;--card:#fffaf5;--ink:#2b211c;--muted:#786c63;--accent:#9a6546;--accent2:#c89568;--danger:#a94442;--line:#e2d6ca;--ok:#56765b}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 header{background:linear-gradient(145deg,#251711,#8a5b43);color:white;padding:22px 18px 18px;position:sticky;top:0;z-index:5}
 .brand{font-family:Georgia,serif;font-size:27px;letter-spacing:.5px}.sub{opacity:.8;font-size:12px;margin-top:3px}
-nav{position:fixed;left:0;right:0;bottom:0;height:72px;display:grid;grid-template-columns:repeat(5,1fr);align-items:center;gap:0;background:#2b1a12;border-top:1px solid rgba(255,255,255,.10);z-index:15;padding:4px 4px calc(4px + env(safe-area-inset-bottom));box-shadow:0 -5px 18px rgba(44,25,15,.22)}
-nav button{position:relative;border:0;border-radius:12px;background:transparent;color:#d9c9bd;padding:5px 2px;font-size:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;white-space:nowrap;transition:transform .18s ease,background .18s ease}
+nav{position:fixed!important;left:0!important;right:0!important;bottom:0!important;width:100vw!important;height:74px!important;display:grid!important;grid-template-columns:repeat(5,1fr)!important;align-items:center!important;gap:0!important;background:#2b1a12!important;border:0!important;border-top:1px solid rgba(255,255,255,.10)!important;border-radius:0!important;z-index:9999!important;padding:4px 4px calc(4px + env(safe-area-inset-bottom))!important;box-shadow:0 -5px 18px rgba(44,25,15,.22)!important}
+nav button{position:relative!important;border:0!important;border-radius:0!important;background:transparent!important;color:#d9c9bd;padding:5px 2px;font-size:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;white-space:nowrap;transition:transform .18s ease,background .18s ease}
 nav button .nav-icon{width:24px;height:24px;display:flex;align-items:center;justify-content:center}
 nav button .nav-icon svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-nav button.active{background:rgba(169,111,74,.82);color:#fff;font-weight:700}
+nav button.active{background:rgba(169,111,74,.82)!important;color:#fff!important;font-weight:700!important;border-radius:8px!important;margin:2px!important}
 nav button.active .nav-icon{transform:translateY(-1px)}
-nav button:nth-child(3) .nav-icon{width:40px;height:40px;margin-top:-1px;border-radius:50%;background:#a96f4a;color:#fff;box-shadow:0 3px 10px rgba(0,0,0,.22)}
+nav button:nth-child(3) .nav-icon{width:40px!important;height:40px!important;margin-top:-1px!important;border-radius:50%!important;background:#a96f4a!important;color:#fff!important;box-shadow:0 3px 10px rgba(0,0,0,.22)!important}
 nav button:nth-child(3) .nav-icon svg{width:24px;height:24px;stroke-width:2}
 nav button:active{transform:scale(.94)}
 nav button:nth-child(3) span:last-child{margin-top:0}
@@ -38,8 +39,8 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:25px}
 <header>
   <div class="brand">Barefoot & Beyond</div>
   <div class="sub">Bar Inventory & Sales Manager</div>
-  <nav id="nav"></nav>
 </header>
+<nav id="nav"></nav>
 <main>
 <section id="dashboard" class="view active">
 <h2>Dashboard</h2>
@@ -123,7 +124,7 @@ function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&l
 let currentView="dashboard";
 function nav(){const items=[
 ["dashboard",`<svg viewBox="0 0 24 24"><path d="M3 10.8 12 3l9 7.8"/><path d="M5.5 9.5V21h13V9.5"/><path d="M9.5 21v-6.5h5V21"/></svg>`,"Dashboard"],
-["inventory",`<svg viewBox="0 0 24 24"><path d="M5 7h12v9a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V7Z"/><path d="M17 9h2a2 2 0 0 1 0 4h-2"/><path d="M7 5v2M11 5v2M15 5v2"/></svg>`,"Inventory"],
+["inventory",`<svg viewBox="0 0 24 24"><path d="M5 8h12v8.5A3.5 3.5 0 0 1 13.5 20h-5A3.5 3.5 0 0 1 5 16.5V8Z"/><path d="M17 10h2a2.5 2.5 0 0 1 0 5h-2"/><path d="M7 6c0-1 1-1 1-2M11 6c0-1 1-1 1-2M15 6c0-1 1-1 1-2"/><path d="M6 11h10"/></svg>`,"Inventory"],
 ["purchases",`<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>`,"Purchases"],
 ["orders",`<svg viewBox="0 0 24 24"><path d="M5 7h14l-1 12H6L5 7Z"/><path d="M9 10V5a3 3 0 0 1 6 0v5"/><path d="M9 14h6"/></svg>`,"Sales"],
 ["reports",`<svg viewBox="0 0 24 24"><path d="M5 20V10M12 20V4M19 20v-7"/><path d="M3 20h18"/></svg>`,"Reports"]
