@@ -97,7 +97,7 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:25px}
   </div>
 </div>
 <div id="reportOutput" class="card" style="margin-top:12px"></div>
-<div class="card" style="margin-top:12px"><h3>Export & Backup</h3><p class="label">Reports are shown directly inside the app. Downloads are optional.</p><div class="toolbar"><button onclick="exportCSV('inventory')">Inventory CSV</button><button onclick="exportCSV('purchases')">Purchases CSV</button><button onclick="exportCSV('orders')">Sales CSV</button><button onclick="backup()">Backup JSON</button><button class="secondary" onclick="document.getElementById('restoreFile').click()">Restore Backup</button><input id="restoreFile" type="file" accept=".json" hidden onchange="restore(this.files[0])"></div></div>
+<div class="card" style="margin-top:12px"><h3>Export & Backup</h3><p class="label">Reports can be viewed in the app and downloaded as PDF or CSV.</p><div class="toolbar"><button onclick="exportCSV('inventory')">Inventory CSV</button><button onclick="exportCSV('purchases')">Purchases CSV</button><button onclick="exportCSV('orders')">Sales CSV</button><button onclick="backup()">Backup JSON</button><button class="secondary" onclick="document.getElementById('restoreFile').click()">Restore Backup</button><input id="restoreFile" type="file" accept=".json" hidden onchange="restore(this.files[0])"></div></div>
 </section>
 </main>
 <footer>Barefoot & Beyond • Offline-first web app • Your data stays in this browser</footer>
