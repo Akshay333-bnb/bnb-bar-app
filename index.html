@@ -1,137 +1,57 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#17100d">
-<title>Barefoot & Beyond — Bar Inventory</title>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Barefoot & Beyond — BnB Tonic</title>
 <style>
-:root{--bg:#f5efe8;--card:#fffaf5;--ink:#2b211c;--muted:#786c63;--accent:#9a6546;--accent2:#c89568;--danger:#a94442;--line:#e2d6ca;--ok:#56765b}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-header{background:linear-gradient(145deg,#251711,#8a5b43);color:white;padding:22px 18px 18px;position:sticky;top:0;z-index:5}
-.brand{font-family:Georgia,serif;font-size:27px;letter-spacing:.5px}.sub{opacity:.8;font-size:12px;margin-top:3px}
-nav{display:flex;gap:7px;overflow:auto;margin-top:18px}nav button{border:1px solid #ffffff40;background:#ffffff15;color:#fff;border-radius:18px;padding:9px 13px;white-space:nowrap}nav button.active{background:#fff;color:#4b3022}
-main{max-width:900px;margin:auto;padding:16px}.view{display:none}.view.active{display:block}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.stat,.card{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:15px;box-shadow:0 3px 12px #00000008}.stat b{display:block;font-size:25px;margin-top:4px}.label{color:var(--muted);font-size:12px}
-h2{font-family:Georgia,serif;margin:8px 0 14px}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
-button,.btn{font:inherit;cursor:pointer;border:0;border-radius:10px;padding:10px 13px;background:var(--accent);color:#fff}.secondary{background:#eadfd5;color:var(--ink)}.danger{background:var(--danger)}.ok{background:var(--ok)}
-input,select{width:100%;padding:11px;border:1px solid var(--line);border-radius:10px;background:#fff;font:inherit;color:var(--ink)}label{font-size:12px;color:var(--muted);display:block;margin:8px 0 4px}
-.form{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.full{grid-column:1/-1}
-.tablewrap{overflow:auto}.table{width:100%;border-collapse:collapse;font-size:13px}.table th,.table td{padding:10px 7px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}.pill{padding:4px 8px;border-radius:12px;background:#eee0d4;font-size:11px}.low{background:#f4cccc}.profit{color:var(--ok);font-weight:700}
-.item{display:flex;justify-content:space-between;gap:10px;align-items:center;border-bottom:1px solid var(--line);padding:12px 0}.item:last-child{border-bottom:0}.actions{display:flex;gap:5px;flex-wrap:wrap}.actions button{padding:7px 9px;font-size:12px}
-.empty{color:var(--muted);text-align:center;padding:30px 10px}
-footer{text-align:center;color:var(--muted);font-size:11px;padding:25px}
-@media(max-width:600px){.grid{grid-template-columns:1fr 1fr}.form{grid-template-columns:1fr}.full{grid-column:auto}.stat b{font-size:21px}.table{font-size:12px}}
-</style>
-</head>
-<body>
-<header>
-  <div class="brand">Barefoot & Beyond</div>
-  <div class="sub">Bar Inventory & Sales Manager</div>
-  <nav id="nav"></nav>
-</header>
+:root{--b:#704323;--b2:#9b6847;--c:#f7f0e7;--w:#fffdf9;--i:#241c18;--m:#766b64;--l:#e5ddd4}
+*{box-sizing:border-box}body{margin:0;background:var(--c);color:var(--i);font-family:Arial,sans-serif;padding-bottom:88px}
+.hero{background:linear-gradient(120deg,#6d3f20,#a16e4b);color:#fff;padding:46px 28px 36px}.hero h1{font:700 34px Georgia,serif;margin:0 0 10px}.hero p{margin:0;font-size:20px}
+main{max-width:760px;margin:auto;padding:26px 27px}.top{display:flex;align-items:center;justify-content:space-between;gap:10px}h2{font-size:36px;margin:20px 0}.btn{border:0;border-radius:19px;padding:17px 22px;background:var(--b);color:#fff;font-size:20px;font-weight:700}.small{padding:11px 16px;font-size:16px;border-radius:13px}.light{background:#eee5db;color:#332820}.danger{background:#f3d8d5;color:#8c3832}
+.search{width:100%;padding:19px 20px;border:1px solid #d8d0c7;border-radius:18px;background:#fff;font-size:20px;margin:4px 0 20px}.note,.card{background:var(--w);border:1px solid var(--l);border-radius:26px;box-shadow:0 2px 8px #4b382515}.note{padding:28px;margin-bottom:24px;color:var(--m);font-size:19px;line-height:1.45}.card{padding:28px;margin:18px 0}
+.head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}.name{font-size:29px;font-weight:700}.pill{display:inline-block;margin-top:13px;background:#f7dcd8;color:#8d4944;padding:8px 15px;border-radius:999px}.line{height:1px;background:var(--l);margin:25px 0}.grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}.label{font-size:18px;color:var(--m);margin-bottom:5px}.val{font-size:27px;font-weight:700}.hidden{display:none}
+.bottom{position:fixed;left:0;right:0;bottom:0;height:88px;background:var(--w);border-top:1px solid #ddd4ca;display:grid;grid-template-columns:repeat(5,1fr);z-index:20}.nav{border:0;background:transparent;color:#70665e;font-size:14px;font-weight:700;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px}.nav .ico{font-size:28px}.nav.active{color:var(--b)}
+.modal{position:fixed;inset:0;background:#0008;display:none;align-items:flex-end;z-index:50}.modal.show{display:flex}.sheet{width:100%;max-height:92vh;overflow:auto;background:var(--c);border-radius:26px 26px 0 0;padding:25px}.sheet h3{font-size:28px}.field{margin:13px 0}.field label{display:block;font-size:15px;color:var(--m);margin-bottom:6px}.field input,.field select{width:100%;padding:15px;border:1px solid #d7cec4;border-radius:13px;background:#fff;font-size:17px}.row{display:flex;gap:10px}.row>*{flex:1}.actions{display:flex;gap:10px;margin-top:20px}.actions>*{flex:1}table{width:100%;border-collapse:collapse;background:#fff}th,td{padding:12px 10px;border-bottom:1px solid var(--l);text-align:left}.statgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.stat{background:var(--w);border:1px solid var(--l);border-radius:18px;padding:18px}.stat b{font-size:25px;display:block;margin-top:5px}
+</style></head><body>
+<header class="hero"><h1>Barefoot &amp; Beyond</h1><p>Bar Inventory &amp; Sales</p></header>
 <main>
-<section id="dashboard" class="view active">
-<h2>Dashboard</h2>
-<div class="grid" id="stats"></div>
-<div class="card" style="margin-top:12px"><h3>Quick actions</h3><div class="toolbar">
-<button onclick="show('inventory');openProductForm()">+ Add Beer</button>
-<button class="secondary" onclick="show('purchases')">Record Purchase</button>
-<button class="secondary" onclick="show('orders')">Record Sale</button>
-</div></div>
-<div class="card" style="margin-top:12px"><h3>Low stock</h3><div id="lowstock"></div></div>
-</section>
-
-<section id="inventory" class="view">
-<h2>Beer Inventory</h2>
-<div class="toolbar"><button onclick="openProductForm()">+ Add Beer</button><button class="secondary" onclick="exportCSV('inventory')">Export CSV</button></div>
-<div class="card"><div class="tablewrap"><table class="table"><thead><tr><th>Beer</th><th>Stock</th><th>Buy ₹</th><th>Sell ₹</th><th>Profit/bottle</th><th></th></tr></thead><tbody id="productRows"></tbody></table></div></div>
-</section>
-
-<section id="purchases" class="view">
-<h2>Purchases / Stock In</h2>
-<div class="card"><div class="form">
-<div><label>Beer</label><select id="purchaseProduct"></select></div>
-<div><label>Quantity</label><input id="purchaseQty" type="number" min="1" value="1"></div>
-<div><label>Purchase price per bottle ₹</label><input id="purchasePrice" type="number" min="0" step=".01" placeholder="Enter purchase rate"></div>
-<div><label>Date</label><input id="purchaseDate" type="date"></div>
-<div class="full"><label>Supplier / Note</label><input id="purchaseNote" placeholder="Optional"></div>
-<div class="full"><button onclick="savePurchase()">Add Purchase</button></div>
-</div></div>
-<div class="card" style="margin-top:12px"><h3>Purchase history</h3><div id="purchaseList"></div></div>
-</section>
-
-<section id="orders" class="view">
-<h2>Orders / Sales</h2>
-<div class="card"><div class="form">
-<div><label>Beer</label><select id="orderProduct"></select></div>
-<div><label>Quantity sold</label><input id="orderQty" type="number" min="1" value="1"></div>
-<div><label>Selling price per bottle ₹</label><input id="orderPrice" type="number" min="0" step=".01" placeholder="Selling rate"></div>
-<div><label>Date</label><input id="orderDate" type="date"></div>
-<div class="full"><label>Order / Table note</label><input id="orderNote" placeholder="Optional"></div>
-<div class="full"><button onclick="saveOrder()">Record Sale</button></div>
-</div></div>
-<div class="card" style="margin-top:12px"><h3>Sales history</h3><div id="orderList"></div></div>
-</section>
-
-<section id="reports" class="view">
-<h2>Reports</h2>
-<div class="card"><p>Download your inventory, purchases or sales as CSV. Data is stored locally on this device/browser.</p>
-<div class="toolbar"><button onclick="exportCSV('inventory')">Inventory CSV</button><button onclick="exportCSV('purchases')">Purchases CSV</button><button onclick="exportCSV('orders')">Sales CSV</button></div>
-</div>
-<div class="card" style="margin-top:12px"><h3>Backup</h3><div class="toolbar"><button onclick="backup()">Download Backup</button><button class="secondary" onclick="document.getElementById('restoreFile').click()">Restore Backup</button><input id="restoreFile" type="file" accept=".json" hidden onchange="restore(this.files[0])"></div></div>
-</section>
+<section id="inventory"><div class="top"><h2>Inventory</h2><button class="btn" onclick="productForm()">＋ Add beer</button></div>
+<input class="search" id="search" placeholder="Search beers..." oninput="render()">
+<div class="note">Selling rates are preloaded. Purchase cost can be entered whenever you buy stock. Add, edit or delete products at any time.</div>
+<div id="list"></div></section>
+<section id="dashboard" class="hidden"><h2>Dashboard</h2><div id="stats" class="statgrid"></div></section>
+<section id="purchases" class="hidden"><div class="top"><h2>Purchases</h2><button class="btn" onclick="purchaseForm()">＋ Stock in</button></div><div class="note">Record bottles purchased and their purchase cost.</div><div id="plist"></div></section>
+<section id="sales" class="hidden"><div class="top"><h2>Sales</h2><button class="btn" onclick="saleForm()">＋ Sale</button></div><div class="note">Record bottles sold. Stock and profit update automatically.</div><div id="slist"></div></section>
+<section id="reports" class="hidden"><div class="top"><h2>Reports</h2><button class="btn small" onclick="window.print()">Print / PDF</button></div>
+<div class="card"><div class="field"><label>From date</label><input type="date" id="from"></div><div class="field"><label>To date</label><input type="date" id="to"></div><div class="field"><label>Report</label><select id="rtype"><option value="summary">Sales &amp; Profit Summary</option><option value="sales">Sales by Product</option><option value="purchases">Purchases by Product</option><option value="stock">Current Inventory</option></select></div><div class="actions"><button class="btn" onclick="report()">View Report</button><button class="btn light" onclick="csv()">Download CSV</button></div></div><div id="report"></div></section>
 </main>
-<footer>Barefoot & Beyond • Offline-first web app • Your data stays in this browser</footer>
-
-<div id="modal" style="display:none;position:fixed;inset:0;background:#0008;z-index:20;padding:20px">
-<div class="card" style="max-width:520px;margin:7vh auto">
-<h2 id="modalTitle">Add Beer</h2>
-<div class="form">
-<div class="full"><label>Beer name</label><input id="pName" placeholder="e.g. Kingfisher Ultra"></div>
-<div><label>Opening stock</label><input id="pStock" type="number" min="0" value="0"></div>
-<div><label>Purchase price ₹</label><input id="pBuy" type="number" min="0" step=".01" placeholder="Leave blank if unknown"></div>
-<div><label>Selling price ₹</label><input id="pSell" type="number" min="0" step=".01" placeholder="Enter selling rate"></div>
-<div class="full"><label>Low-stock alert at</label><input id="pLow" type="number" min="0" value="5"></div>
-</div><div class="toolbar" style="margin-top:15px"><button onclick="saveProduct()">Save Beer</button><button class="secondary" onclick="closeModal()">Cancel</button></div>
-</div></div>
-
+<nav class="bottom">
+<button class="nav" data-p="dashboard" onclick="go('dashboard')"><span class="ico">⌂</span>Dashboard</button>
+<button class="nav active" data-p="inventory" onclick="go('inventory')"><span class="ico">🍺</span>Inventory</button>
+<button class="nav" data-p="purchases" onclick="go('purchases')"><span class="ico">＋</span>Purchases</button>
+<button class="nav" data-p="sales" onclick="go('sales')"><span class="ico">₹</span>Sales</button>
+<button class="nav" data-p="reports" onclick="go('reports')"><span class="ico">▣</span>Reports</button>
+</nav>
+<div id="modal" class="modal" onclick="if(event.target===this)closeM()"><div class="sheet" id="sheet"></div></div>
 <script>
-const rates={"Bud Magnum":300,"Bud Premium":250,"Corona":250,"Tuborg":250,"Carlsberg":290,"Kingfisher Premium":200,"Kingfisher Strong":250,"UB Strong":250,"Breezer":200,"BuzzBall":180};
-const key="bnb_bar_v3";
-let data=JSON.parse(localStorage.getItem(key)||"null")||{products:[],purchases:[],orders:[]};
-if(!data.products.length){data.products=Object.entries(rates).map(([name,sell])=>({id:crypto.randomUUID(),name,stock:0,buy:0,sell,low:5}));save()}
-function save(){localStorage.setItem(key,JSON.stringify(data));render()}
-function money(n){return "₹"+Number(n||0).toLocaleString("en-IN",{maximumFractionDigits:2})}
-function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
-function nav(){document.getElementById("nav").innerHTML=[["dashboard","Dashboard"],["inventory","Inventory"],["purchases","Purchases"],["orders","Orders"],["reports","Reports"]].map(x=>`<button onclick="show('${x[0]}')">${x[1]}</button>`).join("")}
-function show(id){document.querySelectorAll(".view").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");render();scrollTo(0,0)}
-function populate(){["purchaseProduct","orderProduct"].forEach(id=>{let s=document.getElementById(id),old=s.value;s.innerHTML=data.products.map(p=>`<option value="${p.id}">${esc(p.name)}</option>`).join("");if(old)s.value=old});document.getElementById("purchaseDate").value ||= new Date().toISOString().slice(0,10);document.getElementById("orderDate").value ||= new Date().toISOString().slice(0,10);syncPrices()}
-function syncPrices(){let p=data.products.find(x=>x.id===document.getElementById("orderProduct").value);if(p)document.getElementById("orderPrice").value=p.sell||"";let q=data.products.find(x=>x.id===document.getElementById("purchaseProduct").value);if(q)document.getElementById("purchasePrice").value=q.buy||""}
-function render(){nav();populate();
-let units=data.products.reduce((a,p)=>a+Number(p.stock||0),0),sales=data.orders.reduce((a,o)=>a+o.qty*o.price,0),cost=data.orders.reduce((a,o)=>a+o.qty*o.buy,0),profit=sales-cost;
-document.getElementById("stats").innerHTML=`<div class="stat"><span class="label">Beer types</span><b>${data.products.length}</b></div><div class="stat"><span class="label">Bottles in stock</span><b>${units}</b></div><div class="stat"><span class="label">Sales</span><b>${money(sales)}</b></div><div class="stat"><span class="label">Profit</span><b class="profit">${money(profit)}</b></div>`;
-let lows=data.products.filter(p=>p.stock<=p.low);document.getElementById("lowstock").innerHTML=lows.length?lows.map(p=>`<div class="item"><span>${esc(p.name)} <span class="pill low">${p.stock} left</span></span><button onclick="quickStock('${p.id}',5)">+5</button></div>`).join(""):`<div class="empty">No low-stock beers 🎉</div>`;
-document.getElementById("productRows").innerHTML=data.products.length?data.products.map(p=>`<tr><td><b>${esc(p.name)}</b></td><td><span class="pill ${p.stock<=p.low?"low":""}">${p.stock}</span></td><td>${p.buy?money(p.buy):"—"}</td><td>${p.sell?money(p.sell):"—"}</td><td class="profit">${money((p.sell||0)-(p.buy||0))}</td><td><div class="actions"><button onclick="quickStock('${p.id}',1)">+1</button><button class="secondary" onclick="editProduct('${p.id}')">Edit</button><button class="danger" onclick="deleteProduct('${p.id}')">Delete</button></div></td></tr>`).join(""):`<tr><td colspan="6" class="empty">No beers yet. Add your first beer.</td></tr>`;
-document.getElementById("purchaseList").innerHTML=data.purchases.length?[...data.purchases].reverse().map(x=>`<div class="item"><span><b>${esc(x.name)}</b> × ${x.qty}<br><span class="label">${x.date} • ${money(x.price)}/bottle</span></span><button class="danger" onclick="deletePurchase('${x.id}')">Delete</button></div>`).join(""):`<div class="empty">No purchases recorded.</div>`;
-document.getElementById("orderList").innerHTML=data.orders.length?[...data.orders].reverse().map(x=>`<div class="item"><span><b>${esc(x.name)}</b> × ${x.qty} = ${money(x.qty*x.price)}<br><span class="label">${x.date} • Profit ${money(x.qty*(x.price-x.buy))}</span></span><button class="danger" onclick="deleteOrder('${x.id}')">Delete</button></div>`).join(""):`<div class="empty">No sales recorded.</div>`;
-}
-function openProductForm(){editing=null;document.getElementById("modalTitle").textContent="Add Beer";["pName","pBuy","pSell"].forEach(x=>document.getElementById(x).value="");document.getElementById("pStock").value=0;document.getElementById("pLow").value=5;document.getElementById("modal").style.display="block"}
-let editing=null;
-function editProduct(id){let p=data.products.find(x=>x.id===id);editing=id;document.getElementById("modalTitle").textContent="Edit Beer";document.getElementById("pName").value=p.name;document.getElementById("pStock").value=p.stock;document.getElementById("pBuy").value=p.buy||"";document.getElementById("pSell").value=p.sell||"";document.getElementById("pLow").value=p.low;document.getElementById("modal").style.display="block"}
-function closeModal(){document.getElementById("modal").style.display="none"}
-function saveProduct(){let name=document.getElementById("pName").value.trim();if(!name)return alert("Enter a beer name.");let obj={name,stock:+document.getElementById("pStock").value||0,buy:+document.getElementById("pBuy").value||0,sell:+document.getElementById("pSell").value||0,low:+document.getElementById("pLow").value||0};if(editing)Object.assign(data.products.find(x=>x.id===editing),obj);else data.products.push({id:crypto.randomUUID(),...obj});closeModal();save()}
-function deleteProduct(id){let p=data.products.find(x=>x.id===id);if(confirm(`Delete ${p.name}?`)){data.products=data.products.filter(x=>x.id!==id);save()}}
-function quickStock(id,n){let p=data.products.find(x=>x.id===id);p.stock+=n;save()}
-function savePurchase(){let p=data.products.find(x=>x.id===purchaseProduct.value),qty=+purchaseQty.value,price=+purchasePrice.value;if(!p||qty<1)return alert("Choose beer and quantity.");if(price<=0)return alert("Enter purchase price.");p.stock+=qty;p.buy=price;data.purchases.push({id:crypto.randomUUID(),name:p.name,qty,price,date:purchaseDate.value||new Date().toISOString().slice(0,10),note:purchaseNote.value});purchaseQty.value=1;purchaseNote.value="";save();show("purchases")}
-function saveOrder(){let p=data.products.find(x=>x.id===orderProduct.value),qty=+orderQty.value,price=+orderPrice.value;if(!p||qty<1)return alert("Choose beer and quantity.");if(price<=0)return alert("Enter selling price.");if(p.stock<qty)return alert(`Only ${p.stock} bottles of ${p.name} are in stock.`);p.stock-=qty;data.orders.push({id:crypto.randomUUID(),name:p.name,qty,price,buy:p.buy||0,date:orderDate.value||new Date().toISOString().slice(0,10),note:orderNote.value});orderQty.value=1;orderNote.value="";save();show("orders")}
-function deletePurchase(id){if(!confirm("Delete this purchase? This will not automatically change stock."))return;data.purchases=data.purchases.filter(x=>x.id!==id);save()}
-function deleteOrder(id){if(!confirm("Delete this sale? This will not automatically return stock."))return;data.orders=data.orders.filter(x=>x.id!==id);save()}
-function csv(rows){return rows.map(r=>r.map(v=>`"${String(v??"").replace(/"/g,'""')}"`).join(",")).join("\n")}
-function exportCSV(type){let rows;if(type==="inventory")rows=[["Beer","Stock","Purchase Price","Selling Price","Profit/Bottle"],...data.products.map(p=>[p.name,p.stock,p.buy,p.sell,(p.sell||0)-(p.buy||0)])];else if(type==="purchases")rows=[["Date","Beer","Quantity","Purchase Price"],...data.purchases.map(x=>[x.date,x.name,x.qty,x.price])];else rows=[["Date","Beer","Quantity","Selling Price","Purchase Cost","Revenue","Profit"],...data.orders.map(x=>[x.date,x.name,x.qty,x.price,x.buy,x.qty*x.price,x.qty*(x.price-x.buy)])];let a=document.createElement("a");a.href=URL.createObjectURL(new Blob([csv(rows)],{type:"text/csv"}));a.download=`bnb-${type}.csv`;a.click()}
-function backup(){let a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:"application/json"}));a.download="bnb-bar-backup.json";a.click()}
-function restore(file){if(!file)return;let r=new FileReader();r.onload=()=>{try{data=JSON.parse(r.result);save();alert("Backup restored.")}catch(e){alert("Invalid backup file.")}};r.readAsText(file)}
-document.getElementById("orderProduct").addEventListener("change",syncPrices);document.getElementById("purchaseProduct").addEventListener("change",syncPrices);
-render();
-</script>
-</body></html>
+const K='bnb_tonic_recreated_v1',D=[['Bud Magnum',300],['Bud Premium',250],['Corona',250],['Tuborg',250],['Carlsberg',290],['Kingfisher Premium',200],['Kingfisher Strong',250],['UB Strong',250],['Breezer',200],['BuzzBall',180]];
+let db=JSON.parse(localStorage.getItem(K)||'null')||{products:D.map((x,i)=>({id:i+1,name:x[0],sell:x[1],cost:null,stock:0})),purchases:[],sales:[]};
+const $=id=>document.getElementById(id), money=n=>'₹'+Number(n||0).toLocaleString('en-IN',{maximumFractionDigits:2}), today=()=>new Date().toISOString().slice(0,10);
+function save(){localStorage.setItem(K,JSON.stringify(db))} function p(id){return db.products.find(x=>x.id==id)}
+function esc(s){return String(s??'').replace(/[&<>"']/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]))}
+function go(x){['dashboard','inventory','purchases','sales','reports'].forEach(y=>$(y).classList.toggle('hidden',y!==x));document.querySelectorAll('.nav').forEach(n=>n.classList.toggle('active',n.dataset.p===x));if(x==='inventory')render();if(x==='dashboard')dash();if(x==='purchases')purchases();if(x==='sales')sales();if(x==='reports')report()}
+function render(){let q=($('search').value||'').toLowerCase();$('list').innerHTML=db.products.filter(x=>x.name.toLowerCase().includes(q)).map(x=>`<div class="card"><div class="head"><div><div class="name">${esc(x.name)}</div><span class="pill">${x.stock} bottles</span></div><button class="btn light small" onclick="productForm(${x.id})">Edit</button></div><div class="line"></div><div class="grid"><div><div class="label">Selling</div><div class="val">${money(x.sell)}</div></div><div><div class="label">Purchase cost</div><div class="val">${x.cost==null?'Not set':money(x.cost)}</div></div><div><div class="label">Stock value</div><div class="val">${money(x.stock*(x.cost||0))}</div></div><div><div class="label">Potential sales</div><div class="val">${money(x.stock*x.sell)}</div></div></div></div>`).join('')}
+function show(s){$('sheet').innerHTML=s;$('modal').classList.add('show')}function closeM(){$('modal').classList.remove('show')}
+function productForm(id){let x=id?p(id):{name:'',sell:'',cost:'',stock:0};show(`<h3>${id?'Edit beer':'Add beer'}</h3><div class="field"><label>Beer / product name</label><input id="n" value="${esc(x.name)}"></div><div class="row"><div class="field"><label>Selling price / bottle</label><input id="sp" type="number" value="${x.sell}"></div><div class="field"><label>Purchase cost / bottle</label><input id="cp" type="number" value="${x.cost??''}" placeholder="Not set"></div></div><div class="field"><label>Current stock</label><input id="st" type="number" min="0" value="${x.stock}"></div><div class="actions"><button class="btn" onclick="saveP(${id||0})">Save</button><button class="btn light" onclick="closeM()">Cancel</button>${id?`<button class="btn danger" onclick="delP(${id})">Delete</button>`:''}</div>`)}
+function saveP(id){let x={name:$('n').value.trim(),sell:+$('sp').value,cost:$('cp').value===''?null:+$('cp').value,stock:Math.max(0,+$('st').value||0)};if(!x.name||!x.sell)return alert('Enter product name and selling price.');if(id)Object.assign(p(id),x);else db.products.push({id:Date.now(),...x});save();closeM();render()}
+function delP(id){if(confirm('Delete this product?')){db.products=db.products.filter(x=>x.id!=id);save();closeM();render()}}
+function purchaseForm(){show(`<h3>Stock in</h3><div class="field"><label>Product</label><select id="pp">${db.products.map(x=>`<option value="${x.id}">${esc(x.name)}</option>`)}</select></div><div class="row"><div class="field"><label>Bottles</label><input id="pq" type="number" min="1" value="1"></div><div class="field"><label>Purchase cost / bottle</label><input id="pc" type="number"></div></div><div class="field"><label>Date</label><input id="pd" type="date" value="${today()}"></div><div class="actions"><button class="btn" onclick="saveBuy()">Save</button><button class="btn light" onclick="closeM()">Cancel</button></div>`)}
+function saveBuy(){let x=p(+$('pp').value),q=+$('pq').value,c=+$('pc').value;if(!q||isNaN(c))return alert('Enter bottles and purchase cost.');x.stock+=q;x.cost=c;db.purchases.unshift({id:Date.now(),product:x.id,qty:q,cost:c,date:$('pd').value});save();closeM();render();purchases()}
+function saleForm(){show(`<h3>Record sale</h3><div class="field"><label>Product</label><select id="spx">${db.products.map(x=>`<option value="${x.id}">${esc(x.name)} — ${x.stock} in stock</option>`)}</select></div><div class="field"><label>Bottles sold</label><input id="sq" type="number" min="1" value="1"></div><div class="field"><label>Date</label><input id="sd" type="date" value="${today()}"></div><div class="actions"><button class="btn" onclick="saveSale()">Save</button><button class="btn light" onclick="closeM()">Cancel</button></div>`)}
+function saveSale(){let x=p(+$('spx').value),q=+$('sq').value;if(!q||q>x.stock)return alert('Not enough stock.');x.stock-=q;db.sales.unshift({id:Date.now(),product:x.id,qty:q,price:x.sell,cost:x.cost,date:$('sd').value});save();closeM();render();sales()}
+function purchases(){$('plist').innerHTML=db.purchases.length?`<table><tr><th>Date</th><th>Product</th><th>Qty</th><th>Total</th></tr>${db.purchases.map(x=>`<tr><td>${x.date}</td><td>${esc(p(x.product)?.name||'Deleted')}</td><td>${x.qty}</td><td>${money(x.qty*x.cost)}</td></tr>`).join('')}</table>`:'<p>No purchases recorded yet.</p>'}
+function sales(){$('slist').innerHTML=db.sales.length?`<table><tr><th>Date</th><th>Product</th><th>Qty</th><th>Sales</th><th>Profit</th></tr>${db.sales.map(x=>`<tr><td>${x.date}</td><td>${esc(p(x.product)?.name||'Deleted')}</td><td>${x.qty}</td><td>${money(x.qty*x.price)}</td><td>${money(x.qty*(x.price-(x.cost||0)))}</td></tr>`).join('')}</table>`:'<p>No sales recorded yet.</p>'}
+function dash(){let s=db.sales.reduce((a,x)=>a+x.qty*x.price,0),pr=db.sales.reduce((a,x)=>a+x.qty*(x.price-(x.cost||0)),0),st=db.products.reduce((a,x)=>a+x.stock,0);$('stats').innerHTML=`<div class="stat">Sales<b>${money(s)}</b></div><div class="stat">Profit<b>${money(pr)}</b></div><div class="stat">Stock<b>${st}</b></div><div class="stat">Products<b>${db.products.length}</b></div>`}
+function report(){let t=$('rtype').value,rows=db.sales.filter(x=>(!$('from').value||x.date>=$('from').value)&&(!$('to').value||x.date<=$('to').value));if(t==='stock'){$('report').innerHTML='<div class="card"><h3>Current Inventory</h3><table><tr><th>Product</th><th>Stock</th><th>Potential Sales</th></tr>'+db.products.map(x=>`<tr><td>${esc(x.name)}</td><td>${x.stock}</td><td>${money(x.stock*x.sell)}</td></tr>`).join('')+'</table></div>';return}let s=rows.reduce((a,x)=>a+x.qty*x.price,0),pr=rows.reduce((a,x)=>a+x.qty*(x.price-(x.cost||0)),0);$('report').innerHTML=`<div class="card"><h3>Sales &amp; Profit Summary</h3><div class="statgrid"><div class="stat">Sales<b>${money(s)}</b></div><div class="stat">Profit<b>${money(pr)}</b></div></div></div>`}
+function csv(){let r=[['Product','Stock','Selling Price','Purchase Cost','Potential Sales'],...db.products.map(x=>[x.name,x.stock,x.sell,x.cost??'',x.stock*x.sell])],c=r.map(a=>a.map(v=>`"${String(v).replaceAll('"','""')}"`).join(',')).join('\n'),a=document.createElement('a');a.href=URL.createObjectURL(new Blob([c],{type:'text/csv'}));a.download='bnb-tonic-inventory.csv';a.click()}
+render();dash();
+</script></body></html>
