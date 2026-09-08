@@ -1,47 +1,35 @@
 <!doctype html>
-<!-- BnB TONIC NAV FIX v11: full-width bottom bar + beer mug -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#2b1a12"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+<meta name="theme-color" content="#17100d">
 <title>Barefoot & Beyond — Bar Inventory</title>
 <style>
 :root{--bg:#f5efe8;--card:#fffaf5;--ink:#2b211c;--muted:#786c63;--accent:#9a6546;--accent2:#c89568;--danger:#a94442;--line:#e2d6ca;--ok:#56765b}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 header{background:linear-gradient(145deg,#251711,#8a5b43);color:white;padding:22px 18px 18px;position:sticky;top:0;z-index:5}
 .brand{font-family:Georgia,serif;font-size:27px;letter-spacing:.5px}.sub{opacity:.8;font-size:12px;margin-top:3px}
-nav{position:fixed!important;left:0!important;right:0!important;bottom:0!important;width:100vw!important;height:74px!important;display:grid!important;grid-template-columns:repeat(5,1fr)!important;align-items:center!important;gap:0!important;background:#2b1a12!important;border:0!important;border-top:1px solid rgba(255,255,255,.10)!important;border-radius:0!important;z-index:9999!important;padding:4px 4px calc(4px + env(safe-area-inset-bottom))!important;box-shadow:0 -5px 18px rgba(44,25,15,.22)!important}
-nav button{position:relative!important;border:0!important;border-radius:0!important;background:transparent!important;color:#d9c9bd;padding:5px 2px;font-size:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;white-space:nowrap;transition:transform .18s ease,background .18s ease}
-nav button .nav-icon{width:24px;height:24px;display:flex;align-items:center;justify-content:center}
-nav button .nav-icon svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-nav button.active{background:rgba(169,111,74,.82)!important;color:#fff!important;font-weight:700!important;border-radius:8px!important;margin:2px!important}
-nav button.active .nav-icon{transform:translateY(-1px)}
-nav button:nth-child(3) .nav-icon{width:40px!important;height:40px!important;margin-top:-1px!important;border-radius:50%!important;background:#a96f4a!important;color:#fff!important;box-shadow:0 3px 10px rgba(0,0,0,.22)!important}
-nav button:nth-child(3) .nav-icon svg{width:24px;height:24px;stroke-width:2}
-nav button:active{transform:scale(.94)}
-nav button:nth-child(3) span:last-child{margin-top:0}
-main{max-width:900px;margin:auto;padding:16px;padding-bottom:105px}.view{display:none}.view.active{display:block}
+nav{display:flex;gap:7px;overflow:auto;margin-top:18px}nav button{border:1px solid #ffffff40;background:#ffffff15;color:#fff;border-radius:18px;padding:9px 13px;white-space:nowrap}nav button.active{background:#fff;color:#4b3022}
+main{max-width:900px;margin:auto;padding:16px}.view{display:none}.view.active{display:block}
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.stat,.card{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:15px;box-shadow:0 3px 12px #00000008}.stat b{display:block;font-size:25px;margin-top:4px}.label{color:var(--muted);font-size:12px}
 h2{font-family:Georgia,serif;margin:8px 0 14px}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
-button,.btn{font:inherit;cursor:pointer;border:0;border-radius:10px;padding:10px 13px;background:var(--accent);color:#fff}.secondary{background:#eadfd5;color:var(--ink)}.pdf-btn{font-weight:700}.danger{background:var(--danger)}.ok{background:var(--ok)}
+button,.btn{font:inherit;cursor:pointer;border:0;border-radius:10px;padding:10px 13px;background:var(--accent);color:#fff}.secondary{background:#eadfd5;color:var(--ink)}.danger{background:var(--danger)}.ok{background:var(--ok)}
 input,select{width:100%;padding:11px;border:1px solid var(--line);border-radius:10px;background:#fff;font:inherit;color:var(--ink)}label{font-size:12px;color:var(--muted);display:block;margin:8px 0 4px}
 .form{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.full{grid-column:1/-1}
 .tablewrap{overflow:auto}.table{width:100%;border-collapse:collapse;font-size:13px}.table th,.table td{padding:10px 7px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}.pill{padding:4px 8px;border-radius:12px;background:#eee0d4;font-size:11px}.low{background:#f4cccc}.profit{color:var(--ok);font-weight:700}
 .item{display:flex;justify-content:space-between;gap:10px;align-items:center;border-bottom:1px solid var(--line);padding:12px 0}.item:last-child{border-bottom:0}.actions{display:flex;gap:5px;flex-wrap:wrap}.actions button{padding:7px 9px;font-size:12px}
 .empty{color:var(--muted);text-align:center;padding:30px 10px}
 footer{text-align:center;color:var(--muted);font-size:11px;padding:25px}
-.report-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:12px 0}.report-stat{background:#f3e8de;border-radius:12px;padding:12px}.report-stat b{display:block;font-size:20px;margin-top:3px}.report-title{font-family:Georgia,serif;margin:0 0 10px}@media print{body{background:#fff}header,nav,footer,#reports>h2,#reports>.card:first-of-type,#reports>.card:last-of-type{display:none!important}.view{display:none!important}.view#reports{display:block!important}.report-print{display:block!important}.card{box-shadow:none;border:0}}
 @media(max-width:600px){.grid{grid-template-columns:1fr 1fr}.form{grid-template-columns:1fr}.full{grid-column:auto}.stat b{font-size:21px}.table{font-size:12px}}
-.beer-emoji{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;font-size:25px;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
 </style>
 </head>
 <body>
 <header>
   <div class="brand">Barefoot & Beyond</div>
   <div class="sub">Bar Inventory & Sales Manager</div>
+  <nav id="nav"></nav>
 </header>
-<nav id="nav"></nav>
 <main>
 <section id="dashboard" class="view active">
 <h2>Dashboard</h2>
@@ -88,16 +76,10 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:25px}
 
 <section id="reports" class="view">
 <h2>Reports</h2>
-<div class="card">
-  <div class="form">
-    <div><label>From date</label><input id="reportFrom" type="date"></div>
-    <div><label>To date</label><input id="reportTo" type="date"></div>
-    <div class="full"><label>Report</label><select id="reportType" onchange="renderReport()"><option value="summary">Sales & Profit Summary</option><option value="sales">Sales by Product</option><option value="purchases">Purchases by Product</option><option value="inventory">Current Inventory</option></select></div>
-    <div class="full toolbar"><button onclick="renderReport()">View Report</button><button class="secondary" onclick="setReportDates()">All Dates</button><button class="secondary pdf-btn" onclick="downloadPDFReport()">Download PDF</button></div>
-  </div>
+<div class="card"><p>Download your inventory, purchases or sales as CSV. Data is stored locally on this device/browser.</p>
+<div class="toolbar"><button onclick="exportCSV('inventory')">Inventory CSV</button><button onclick="exportCSV('purchases')">Purchases CSV</button><button onclick="exportCSV('orders')">Sales CSV</button></div>
 </div>
-<div id="reportOutput" class="card" style="margin-top:12px"></div>
-<div class="card" style="margin-top:12px"><h3>Export & Backup</h3><p class="label">Reports can be viewed in the app and downloaded as PDF or CSV.</p><div class="toolbar"><button onclick="exportCSV('inventory')">Inventory CSV</button><button onclick="exportCSV('purchases')">Purchases CSV</button><button onclick="exportCSV('orders')">Sales CSV</button><button onclick="backup()">Backup JSON</button><button class="secondary" onclick="document.getElementById('restoreFile').click()">Restore Backup</button><input id="restoreFile" type="file" accept=".json" hidden onchange="restore(this.files[0])"></div></div>
+<div class="card" style="margin-top:12px"><h3>Backup</h3><div class="toolbar"><button onclick="backup()">Download Backup</button><button class="secondary" onclick="document.getElementById('restoreFile').click()">Restore Backup</button><input id="restoreFile" type="file" accept=".json" hidden onchange="restore(this.files[0])"></div></div>
 </section>
 </main>
 <footer>Barefoot & Beyond • Offline-first web app • Your data stays in this browser</footer>
@@ -122,15 +104,8 @@ if(!data.products.length){data.products=Object.entries(rates).map(([name,sell])=
 function save(){localStorage.setItem(key,JSON.stringify(data));render()}
 function money(n){return "₹"+Number(n||0).toLocaleString("en-IN",{maximumFractionDigits:2})}
 function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
-let currentView="dashboard";
-function nav(){const items=[
-["dashboard",`<svg viewBox="0 0 24 24"><path d="M3 10.8 12 3l9 7.8"/><path d="M5.5 9.5V21h13V9.5"/><path d="M9.5 21v-6.5h5V21"/></svg>`,"Dashboard"],
-["inventory",`<span class="beer-emoji" aria-hidden="true">&#x1F37A;</span>`,"Inventory"],
-["purchases",`<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>`,"Purchases"],
-["orders",`<svg viewBox="0 0 24 24"><path d="M5 7h14l-1 12H6L5 7Z"/><path d="M9 10V5a3 3 0 0 1 6 0v5"/><path d="M9 14h6"/></svg>`,"Sales"],
-["reports",`<svg viewBox="0 0 24 24"><path d="M5 20V10M12 20V4M19 20v-7"/><path d="M3 20h18"/></svg>`,"Reports"]
-];document.getElementById("nav").innerHTML=items.map(([id,icon,label])=>`<button class="${id===currentView?"active":""}" onclick="show('${id}')" aria-label="${label}"><span class="nav-icon">${icon}</span><span>${label}</span></button>`).join("")}
-function show(id){currentView=id;document.querySelectorAll(".view").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");render();if(id==="reports")renderReport();scrollTo(0,0)}
+function nav(){document.getElementById("nav").innerHTML=[["dashboard","Dashboard"],["inventory","Inventory"],["purchases","Purchases"],["orders","Orders"],["reports","Reports"]].map(x=>`<button onclick="show('${x[0]}')">${x[1]}</button>`).join("")}
+function show(id){document.querySelectorAll(".view").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");render();scrollTo(0,0)}
 function populate(){["purchaseProduct","orderProduct"].forEach(id=>{let s=document.getElementById(id),old=s.value;s.innerHTML=data.products.map(p=>`<option value="${p.id}">${esc(p.name)}</option>`).join("");if(old)s.value=old});document.getElementById("purchaseDate").value ||= new Date().toISOString().slice(0,10);document.getElementById("orderDate").value ||= new Date().toISOString().slice(0,10);syncPrices()}
 function syncPrices(){let p=data.products.find(x=>x.id===document.getElementById("orderProduct").value);if(p)document.getElementById("orderPrice").value=p.sell||"";let q=data.products.find(x=>x.id===document.getElementById("purchaseProduct").value);if(q)document.getElementById("purchasePrice").value=q.buy||""}
 function render(){nav();populate();
@@ -152,124 +127,6 @@ function savePurchase(){let p=data.products.find(x=>x.id===purchaseProduct.value
 function saveOrder(){let p=data.products.find(x=>x.id===orderProduct.value),qty=+orderQty.value,price=+orderPrice.value;if(!p||qty<1)return alert("Choose beer and quantity.");if(price<=0)return alert("Enter selling price.");if(p.stock<qty)return alert(`Only ${p.stock} bottles of ${p.name} are in stock.`);p.stock-=qty;data.orders.push({id:crypto.randomUUID(),name:p.name,qty,price,buy:p.buy||0,date:orderDate.value||new Date().toISOString().slice(0,10),note:orderNote.value});orderQty.value=1;orderNote.value="";save();show("orders")}
 function deletePurchase(id){if(!confirm("Delete this purchase? This will not automatically change stock."))return;data.purchases=data.purchases.filter(x=>x.id!==id);save()}
 function deleteOrder(id){if(!confirm("Delete this sale? This will not automatically return stock."))return;data.orders=data.orders.filter(x=>x.id!==id);save()}
-function setReportDates(){document.getElementById("reportFrom").value="";document.getElementById("reportTo").value="";renderReport()}
-function inReportRange(date){let f=document.getElementById("reportFrom")?.value||"",t=document.getElementById("reportTo")?.value||"";return (!f||date>=f)&&(!t||date<=t)}
-function renderReport(){let out=document.getElementById("reportOutput");if(!out)return;let type=document.getElementById("reportType").value;let orders=data.orders.filter(x=>inReportRange(x.date));let purchases=data.purchases.filter(x=>inReportRange(x.date));let revenue=orders.reduce((a,x)=>a+x.qty*x.price,0),cost=orders.reduce((a,x)=>a+x.qty*x.buy,0),profit=revenue-cost,units=orders.reduce((a,x)=>a+x.qty,0);let from=document.getElementById("reportFrom").value||"All",to=document.getElementById("reportTo").value||"Dates";let html=`<div class="report-print"><h3 class="report-title">BnB Tonic Report</h3><div class="label">${from} → ${to}</div>`;
-if(type==="summary"){html+=`<div class="report-grid"><div class="report-stat"><span class="label">Sales</span><b>${money(revenue)}</b></div><div class="report-stat"><span class="label">Cost of sold stock</span><b>${money(cost)}</b></div><div class="report-stat"><span class="label">Profit</span><b class="profit">${money(profit)}</b></div><div class="report-stat"><span class="label">Bottles sold</span><b>${units}</b></div></div><div class="tablewrap"><table class="table"><thead><tr><th>Date</th><th>Beer</th><th>Qty</th><th>Revenue</th><th>Profit</th></tr></thead><tbody>${orders.length?orders.map(x=>`<tr><td>${esc(x.date)}</td><td>${esc(x.name)}</td><td>${x.qty}</td><td>${money(x.qty*x.price)}</td><td class="profit">${money(x.qty*(x.price-x.buy))}</td></tr>`).join(""): `<tr><td colspan="5" class="empty">No sales in this period.</td></tr>`}</tbody></table></div>`}
-else if(type==="sales"){let m={};orders.forEach(x=>{m[x.name]??={qty:0,revenue:0,profit:0};m[x.name].qty+=x.qty;m[x.name].revenue+=x.qty*x.price;m[x.name].profit+=x.qty*(x.price-x.buy)});html+=`<div class="tablewrap"><table class="table"><thead><tr><th>Beer</th><th>Bottles sold</th><th>Revenue</th><th>Profit</th></tr></thead><tbody>${Object.keys(m).length?Object.entries(m).map(([n,v])=>`<tr><td><b>${esc(n)}</b></td><td>${v.qty}</td><td>${money(v.revenue)}</td><td class="profit">${money(v.profit)}</td></tr>`).join(""):`<tr><td colspan="4" class="empty">No sales in this period.</td></tr>`}</tbody></table></div>`}
-else if(type==="purchases"){let m={};purchases.forEach(x=>{m[x.name]??={qty:0,cost:0};m[x.name].qty+=x.qty;m[x.name].cost+=x.qty*x.price});html+=`<div class="tablewrap"><table class="table"><thead><tr><th>Beer</th><th>Bottles purchased</th><th>Purchase cost</th></tr></thead><tbody>${Object.keys(m).length?Object.entries(m).map(([n,v])=>`<tr><td><b>${esc(n)}</b></td><td>${v.qty}</td><td>${money(v.cost)}</td></tr>`).join(""):`<tr><td colspan="3" class="empty">No purchases in this period.</td></tr>`}</tbody></table></div>`}
-else {html+=`<div class="tablewrap"><table class="table"><thead><tr><th>Beer</th><th>Stock</th><th>Buy ₹</th><th>Sell ₹</th><th>Profit/bottle</th></tr></thead><tbody>${data.products.length?data.products.map(p=>`<tr><td><b>${esc(p.name)}</b></td><td>${p.stock}</td><td>${p.buy?money(p.buy):"—"}</td><td>${p.sell?money(p.sell):"—"}</td><td class="profit">${money((p.sell||0)-(p.buy||0))}</td></tr>`).join(""):`<tr><td colspan="5" class="empty">No inventory.</td></tr>`}</tbody></table></div>`}
-out.innerHTML=html+`</div>`}
-
-function pdfEscape(s){
-  return String(s??"").replace(/\\/g,"\\\\").replace(/\(/g,"\\(").replace(/\)/g,"\\)").replace(/\r?\n/g," ");
-}
-function wrapPdfText(s,max=88){
-  s=String(s??"");
-  let words=s.split(/\s+/), lines=[], line="";
-  for(const w of words){
-    if((line+" "+w).trim().length>max){if(line)lines.push(line);line=w}
-    else line=(line+" "+w).trim();
-  }
-  if(line)lines.push(line);
-  return lines;
-}
-function downloadPDFReport(){
-  const type=document.getElementById("reportType").value;
-  const orders=data.orders.filter(x=>inReportRange(x.date));
-  const purchases=data.purchases.filter(x=>inReportRange(x.date));
-  const from=document.getElementById("reportFrom").value||"All";
-  const to=document.getElementById("reportTo").value||"Dates";
-  const revenue=orders.reduce((a,x)=>a+x.qty*x.price,0);
-  const cost=orders.reduce((a,x)=>a+x.qty*x.buy,0);
-  const profit=revenue-cost;
-  const units=orders.reduce((a,x)=>a+x.qty,0);
-  let title="Sales & Profit Summary", lines=[];
-  lines.push("BnB Tonic Report");
-  lines.push("Period: "+from+" -> "+to);
-  lines.push("");
-
-  if(type==="summary"){
-    title="Sales & Profit Summary";
-    lines.push(title);
-    lines.push("Sales: "+money(revenue));
-    lines.push("Cost of sold stock: "+money(cost));
-    lines.push("Profit: "+money(profit));
-    lines.push("Bottles sold: "+units);
-    lines.push("");
-    lines.push("Date | Beer | Qty | Revenue | Profit");
-    orders.forEach(x=>lines.push(`${x.date} | ${x.name} | ${x.qty} | ${money(x.qty*x.price)} | ${money(x.qty*(x.price-x.buy))}`));
-    if(!orders.length) lines.push("No sales in this period.");
-  }else if(type==="sales"){
-    title="Sales by Product"; lines.push(title);
-    const m={};
-    orders.forEach(x=>{m[x.name]??={qty:0,revenue:0,profit:0};m[x.name].qty+=x.qty;m[x.name].revenue+=x.qty*x.price;m[x.name].profit+=x.qty*(x.price-x.buy)});
-    lines.push("Beer | Bottles sold | Revenue | Profit");
-    Object.entries(m).forEach(([n,v])=>lines.push(`${n} | ${v.qty} | ${money(v.revenue)} | ${money(v.profit)}`));
-    if(!Object.keys(m).length) lines.push("No sales in this period.");
-  }else if(type==="purchases"){
-    title="Purchases by Product"; lines.push(title);
-    const m={};
-    purchases.forEach(x=>{m[x.name]??={qty:0,cost:0};m[x.name].qty+=x.qty;m[x.name].cost+=x.qty*x.price});
-    lines.push("Beer | Bottles purchased | Purchase cost");
-    Object.entries(m).forEach(([n,v])=>lines.push(`${n} | ${v.qty} | ${money(v.cost)}`));
-    if(!Object.keys(m).length) lines.push("No purchases in this period.");
-  }else{
-    title="Current Inventory"; lines.push(title);
-    lines.push("Beer | Stock | Buy | Sell | Profit/bottle");
-    data.products.forEach(p=>lines.push(`${p.name} | ${p.stock} | ${p.buy?money(p.buy):"-"} | ${p.sell?money(p.sell):"-"} | ${money((p.sell||0)-(p.buy||0))}`));
-    if(!data.products.length) lines.push("No inventory.");
-  }
-
-  // Minimal self-contained PDF writer: no external libraries, works offline.
-  const pageW=595, pageH=842, margin=40, lineH=14;
-  let pages=[], page=[];
-  const maxLines=Math.floor((pageH-70)/lineH);
-  for(const raw of lines){
-    for(const part of wrapPdfText(raw,88)){
-      if(page.length>=maxLines){pages.push(page);page=[]}
-      page.push(part);
-    }
-  }
-  if(page.length) pages.push(page);
-  if(!pages.length) pages=[["BnB Tonic Report"]];
-
-  const objs=[];
-  const addObj=s=>{objs.push(s);return objs.length};
-  const fontObj=addObj("<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>");
-  const pageObjs=[];
-  for(const pg of pages){
-    let content="BT\n/F1 10 Tf\n40 802 Td\n";
-    pg.forEach((line,i)=>{
-      if(i===0) content="/F1 16 Tf\n0 0 Td\n("+pdfEscape(line)+") Tj\n/F1 10 Tf\n0 -22 Td\n";
-      else content+="("+pdfEscape(line)+") Tj\n0 -14 Td\n";
-    });
-    content+="ET";
-    const streamObj=addObj(`<< /Length ${content.length} >>\nstream\n${content}\nendstream`);
-    const pageObj=addObj(`<< /Type /Page /Parent PAGES /MediaBox [0 0 ${pageW} ${pageH}] /Resources << /Font << /F1 ${fontObj} 0 R >> >> /Contents ${streamObj} 0 R >>`);
-    pageObjs.push(pageObj);
-  }
-  const kids=pageObjs.map(n=>`${n} 0 R`).join(" ");
-  const pagesObj=addObj(`<< /Type /Pages /Kids [${kids}] /Count ${pageObjs.length} >>`);
-  for(const n of pageObjs) objs[n-1]=objs[n-1].replace("PAGES",`${pagesObj} 0 R`);
-  const catalogObj=addObj(`<< /Type /Catalog /Pages ${pagesObj} 0 R >>`);
-
-  let pdf="%PDF-1.4\n", offsets=[0];
-  objs.forEach((o,i)=>{offsets[i+1]=pdf.length;pdf+=(i+1)+" 0 obj\n"+o+"\nendobj\n"});
-  const xref=pdf.length;
-  pdf+="xref\n0 "+(objs.length+1)+"\n0000000000 65535 f \n";
-  for(let i=1;i<=objs.length;i++) pdf+=String(offsets[i]).padStart(10,"0")+" 00000 n \n";
-  pdf+=`trailer\n<< /Size ${objs.length+1} /Root ${catalogObj} 0 R >>\nstartxref\n${xref}\n%%EOF`;
-  const blob=new Blob([pdf],{type:"application/pdf"});
-  const a=document.createElement("a");
-  a.href=URL.createObjectURL(blob);
-  a.download=`bnb-tonic-${type}-${from}-to-${to}.pdf`;
-  document.body.appendChild(a);a.click();a.remove();
-  setTimeout(()=>URL.revokeObjectURL(a.href),1000);
-}
-function printReport(){renderReport();setTimeout(()=>window.print(),50)}
-
-function printReport(){renderReport();setTimeout(()=>window.print(),50)}
 function csv(rows){return rows.map(r=>r.map(v=>`"${String(v??"").replace(/"/g,'""')}"`).join(",")).join("\n")}
 function exportCSV(type){let rows;if(type==="inventory")rows=[["Beer","Stock","Purchase Price","Selling Price","Profit/Bottle"],...data.products.map(p=>[p.name,p.stock,p.buy,p.sell,(p.sell||0)-(p.buy||0)])];else if(type==="purchases")rows=[["Date","Beer","Quantity","Purchase Price"],...data.purchases.map(x=>[x.date,x.name,x.qty,x.price])];else rows=[["Date","Beer","Quantity","Selling Price","Purchase Cost","Revenue","Profit"],...data.orders.map(x=>[x.date,x.name,x.qty,x.price,x.buy,x.qty*x.price,x.qty*(x.price-x.buy)])];let a=document.createElement("a");a.href=URL.createObjectURL(new Blob([csv(rows)],{type:"text/csv"}));a.download=`bnb-${type}.csv`;a.click()}
 function backup(){let a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:"application/json"}));a.download="bnb-bar-backup.json";a.click()}
