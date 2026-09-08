@@ -3,75 +3,151 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#6b4328">
+<meta name="theme-color" content="#17100d">
 <title>Barefoot & Beyond — Bar Inventory</title>
 <style>
-:root{--bg:#f7f1e8;--card:#fffdf9;--ink:#2e2118;--muted:#806f61;--accent:#7b4e2f;--danger:#b33a32;--line:#eadfd3;--ok:#47744e}
+:root{--bg:#f5efe8;--card:#fffaf5;--ink:#2b211c;--muted:#786c63;--accent:#9a6546;--accent2:#c89568;--danger:#a94442;--line:#e2d6ca;--ok:#56765b}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-header{background:linear-gradient(145deg,#6b4328,#a8754d);color:#fff;padding:24px 18px 18px;position:sticky;top:0;z-index:10}.brand{font-family:Georgia,serif;font-size:25px;font-weight:700}.sub{opacity:.82;font-size:13px;margin-top:4px}
-main{padding:14px 14px 90px;max-width:720px;margin:auto}.view{display:none}.view.active{display:block}h2{margin:10px 0 14px;font-size:22px}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:15px;box-shadow:0 3px 12px #5b3a2410;margin-bottom:12px}
-.stat{font-size:25px;font-weight:750}.label{font-size:12px;color:var(--muted);margin-top:3px}.row{display:flex;gap:8px;align-items:center}.between{justify-content:space-between}
-button{font:inherit;border:0;border-radius:11px;padding:11px 13px;background:var(--accent);color:#fff;font-weight:650}button.secondary{background:#eee3d7;color:var(--ink)}button.danger{background:var(--danger)}button.small{padding:8px 10px;font-size:12px}
-input,select{font:inherit;width:100%;padding:11px;border:1px solid #d9cbbb;border-radius:10px;background:#fff}.field{margin-bottom:10px}.field label{display:block;font-size:12px;color:var(--muted);margin-bottom:5px}
-table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:10px 6px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-size:11px}
-.badge{display:inline-block;border-radius:20px;padding:4px 8px;font-size:11px;background:#eee3d7}.low{background:#f7d9d5;color:#8c241e}.good{background:#dcebdd;color:#315c36}
-.actions{display:flex;gap:7px;flex-wrap:wrap}.empty{text-align:center;color:var(--muted);padding:25px}.note{font-size:12px;color:var(--muted);line-height:1.5}
-.modal{display:none;position:fixed;inset:0;background:#0007;z-index:50;padding:18px;overflow:auto}.modal.show{display:block}.modalbox{max-width:600px;margin:35px auto;background:var(--card);border-radius:18px;padding:18px}
-hr{border:0;border-top:1px solid var(--line);margin:15px 0}.profit{color:var(--ok);font-weight:750}.loss{color:var(--danger);font-weight:750}.search{margin-bottom:10px}
-.nav{position:fixed;bottom:0;left:0;right:0;background:#fffdf9;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);z-index:20}
-.nav button{border-radius:0;background:transparent;color:var(--muted);padding:9px 2px;font-size:10px}.nav button.active{color:var(--accent);font-weight:800}.nav span{display:block;font-size:18px;margin-bottom:2px}
-@media(min-width:650px){.grid{grid-template-columns:repeat(4,1fr)}}
+header{background:linear-gradient(145deg,#251711,#8a5b43);color:white;padding:22px 18px 18px;position:sticky;top:0;z-index:5}
+.brand{font-family:Georgia,serif;font-size:27px;letter-spacing:.5px}.sub{opacity:.8;font-size:12px;margin-top:3px}
+nav{display:flex;gap:7px;overflow:auto;margin-top:18px}nav button{border:1px solid #ffffff40;background:#ffffff15;color:#fff;border-radius:18px;padding:9px 13px;white-space:nowrap}nav button.active{background:#fff;color:#4b3022}
+main{max-width:900px;margin:auto;padding:16px}.view{display:none}.view.active{display:block}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.stat,.card{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:15px;box-shadow:0 3px 12px #00000008}.stat b{display:block;font-size:25px;margin-top:4px}.label{color:var(--muted);font-size:12px}
+h2{font-family:Georgia,serif;margin:8px 0 14px}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+button,.btn{font:inherit;cursor:pointer;border:0;border-radius:10px;padding:10px 13px;background:var(--accent);color:#fff}.secondary{background:#eadfd5;color:var(--ink)}.danger{background:var(--danger)}.ok{background:var(--ok)}
+input,select{width:100%;padding:11px;border:1px solid var(--line);border-radius:10px;background:#fff;font:inherit;color:var(--ink)}label{font-size:12px;color:var(--muted);display:block;margin:8px 0 4px}
+.form{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.full{grid-column:1/-1}
+.tablewrap{overflow:auto}.table{width:100%;border-collapse:collapse;font-size:13px}.table th,.table td{padding:10px 7px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}.pill{padding:4px 8px;border-radius:12px;background:#eee0d4;font-size:11px}.low{background:#f4cccc}.profit{color:var(--ok);font-weight:700}
+.item{display:flex;justify-content:space-between;gap:10px;align-items:center;border-bottom:1px solid var(--line);padding:12px 0}.item:last-child{border-bottom:0}.actions{display:flex;gap:5px;flex-wrap:wrap}.actions button{padding:7px 9px;font-size:12px}
+.empty{color:var(--muted);text-align:center;padding:30px 10px}
+footer{text-align:center;color:var(--muted);font-size:11px;padding:25px}
+.report-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:12px 0}.report-stat{background:#f3e8de;border-radius:12px;padding:12px}.report-stat b{display:block;font-size:20px;margin-top:3px}.report-title{font-family:Georgia,serif;margin:0 0 10px}@media print{body{background:#fff}header,nav,footer,#reports>h2,#reports>.card:first-of-type,#reports>.card:last-of-type{display:none!important}.view{display:none!important}.view#reports{display:block!important}.report-print{display:block!important}.card{box-shadow:none;border:0}}
+@media(max-width:600px){.grid{grid-template-columns:1fr 1fr}.form{grid-template-columns:1fr}.full{grid-column:auto}.stat b{font-size:21px}.table{font-size:12px}}
 </style>
 </head>
 <body>
-<header><div class="brand">Barefoot & Beyond</div><div class="sub">Bar Inventory & Sales</div></header>
+<header>
+  <div class="brand">Barefoot & Beyond</div>
+  <div class="sub">Bar Inventory & Sales Manager</div>
+  <nav id="nav"></nav>
+</header>
 <main>
-<section id="dashboard" class="view active"><h2>Dashboard</h2>
-<div class="grid"><div class="card"><div class="stat" id="dashProducts">0</div><div class="label">Products</div></div><div class="card"><div class="stat" id="dashStock">0</div><div class="label">Total bottles</div></div><div class="card"><div class="stat" id="dashSales">₹0</div><div class="label">Sales value</div></div><div class="card"><div class="stat" id="dashProfit">₹0</div><div class="label">Estimated profit</div></div></div>
-<div class="card"><h3>Low stock</h3><div id="lowStock"></div></div><div class="card"><h3>Quick actions</h3><div class="actions"><button onclick="openPurchase()">＋ Purchase stock</button><button onclick="openSale()">＋ Record sale</button></div></div>
+<section id="dashboard" class="view active">
+<h2>Dashboard</h2>
+<div class="grid" id="stats"></div>
+<div class="card" style="margin-top:12px"><h3>Quick actions</h3><div class="toolbar">
+<button onclick="show('inventory');openProductForm()">+ Add Beer</button>
+<button class="secondary" onclick="show('purchases')">Record Purchase</button>
+<button class="secondary" onclick="show('orders')">Record Sale</button>
+</div></div>
+<div class="card" style="margin-top:12px"><h3>Low stock</h3><div id="lowstock"></div></div>
 </section>
-<section id="inventory" class="view"><div class="row between"><h2>Inventory</h2><button onclick="openProduct()">＋ Add beer</button></div><input class="search" id="search" placeholder="Search beers…" oninput="renderInventory()"><div class="card"><div class="note">Selling rates are preloaded. Purchase cost can be entered whenever you buy stock. Add, edit or delete products at any time.</div></div><div id="inventoryList"></div></section>
-<section id="purchases" class="view"><div class="row between"><h2>Purchases</h2><button onclick="openPurchase()">＋ Add</button></div><div id="purchaseList"></div></section>
-<section id="sales" class="view"><div class="row between"><h2>Sales / Orders</h2><button onclick="openSale()">＋ Add</button></div><div id="salesList"></div></section>
-<section id="reports" class="view"><h2>Reports</h2><div class="card"><h3>Export your data</h3><p class="note">Download a complete JSON backup or CSV reports.</p><div class="actions"><button onclick="downloadBackup()">Backup JSON</button><button class="secondary" onclick="downloadCSV('inventory')">Inventory CSV</button><button class="secondary" onclick="downloadCSV('sales')">Sales CSV</button><button class="secondary" onclick="downloadCSV('purchases')">Purchases CSV</button></div></div><div class="card"><h3>Data</h3><button class="danger" onclick="resetAll()">Reset all app data</button></div></section>
+
+<section id="inventory" class="view">
+<h2>Beer Inventory</h2>
+<div class="toolbar"><button onclick="openProductForm()">+ Add Beer</button><button class="secondary" onclick="exportCSV('inventory')">Export CSV</button></div>
+<div class="card"><div class="tablewrap"><table class="table"><thead><tr><th>Beer</th><th>Stock</th><th>Buy ₹</th><th>Sell ₹</th><th>Profit/bottle</th><th></th></tr></thead><tbody id="productRows"></tbody></table></div></div>
+</section>
+
+<section id="purchases" class="view">
+<h2>Purchases / Stock In</h2>
+<div class="card"><div class="form">
+<div><label>Beer</label><select id="purchaseProduct"></select></div>
+<div><label>Quantity</label><input id="purchaseQty" type="number" min="1" value="1"></div>
+<div><label>Purchase price per bottle ₹</label><input id="purchasePrice" type="number" min="0" step=".01" placeholder="Enter purchase rate"></div>
+<div><label>Date</label><input id="purchaseDate" type="date"></div>
+<div class="full"><label>Supplier / Note</label><input id="purchaseNote" placeholder="Optional"></div>
+<div class="full"><button onclick="savePurchase()">Add Purchase</button></div>
+</div></div>
+<div class="card" style="margin-top:12px"><h3>Purchase history</h3><div id="purchaseList"></div></div>
+</section>
+
+<section id="orders" class="view">
+<h2>Orders / Sales</h2>
+<div class="card"><div class="form">
+<div><label>Beer</label><select id="orderProduct"></select></div>
+<div><label>Quantity sold</label><input id="orderQty" type="number" min="1" value="1"></div>
+<div><label>Selling price per bottle ₹</label><input id="orderPrice" type="number" min="0" step=".01" placeholder="Selling rate"></div>
+<div><label>Date</label><input id="orderDate" type="date"></div>
+<div class="full"><label>Order / Table note</label><input id="orderNote" placeholder="Optional"></div>
+<div class="full"><button onclick="saveOrder()">Record Sale</button></div>
+</div></div>
+<div class="card" style="margin-top:12px"><h3>Sales history</h3><div id="orderList"></div></div>
+</section>
+
+<section id="reports" class="view">
+<h2>Reports</h2>
+<div class="card">
+  <div class="form">
+    <div><label>From date</label><input id="reportFrom" type="date"></div>
+    <div><label>To date</label><input id="reportTo" type="date"></div>
+    <div class="full"><label>Report</label><select id="reportType" onchange="renderReport()"><option value="summary">Sales & Profit Summary</option><option value="sales">Sales by Product</option><option value="purchases">Purchases by Product</option><option value="inventory">Current Inventory</option></select></div>
+    <div class="full toolbar"><button onclick="renderReport()">View Report</button><button class="secondary" onclick="setReportDates()">All Dates</button><button class="secondary" onclick="printReport()">Print / Save PDF</button></div>
+  </div>
+</div>
+<div id="reportOutput" class="card" style="margin-top:12px"></div>
+<div class="card" style="margin-top:12px"><h3>Export & Backup</h3><p class="label">Reports are shown directly inside the app. Downloads are optional.</p><div class="toolbar"><button onclick="exportCSV('inventory')">Inventory CSV</button><button onclick="exportCSV('purchases')">Purchases CSV</button><button onclick="exportCSV('orders')">Sales CSV</button><button onclick="backup()">Backup JSON</button><button class="secondary" onclick="document.getElementById('restoreFile').click()">Restore Backup</button><input id="restoreFile" type="file" accept=".json" hidden onchange="restore(this.files[0])"></div></div>
+</section>
 </main>
-<nav class="nav"><button class="active" onclick="showView('dashboard',this)"><span>⌂</span>Dashboard</button><button onclick="showView('inventory',this)"><span>🍺</span>Inventory</button><button onclick="showView('purchases',this)"><span>＋</span>Purchases</button><button onclick="showView('sales',this)"><span>₹</span>Sales</button><button onclick="showView('reports',this)"><span>▣</span>Reports</button></nav>
-<div class="modal" id="modal"><div class="modalbox" id="modalBox"></div></div>
+<footer>Barefoot & Beyond • Offline-first web app • Your data stays in this browser</footer>
+
+<div id="modal" style="display:none;position:fixed;inset:0;background:#0008;z-index:20;padding:20px">
+<div class="card" style="max-width:520px;margin:7vh auto">
+<h2 id="modalTitle">Add Beer</h2>
+<div class="form">
+<div class="full"><label>Beer name</label><input id="pName" placeholder="e.g. Kingfisher Ultra"></div>
+<div><label>Opening stock</label><input id="pStock" type="number" min="0" value="0"></div>
+<div><label>Purchase price ₹</label><input id="pBuy" type="number" min="0" step=".01" placeholder="Leave blank if unknown"></div>
+<div><label>Selling price ₹</label><input id="pSell" type="number" min="0" step=".01" placeholder="Enter selling rate"></div>
+<div class="full"><label>Low-stock alert at</label><input id="pLow" type="number" min="0" value="5"></div>
+</div><div class="toolbar" style="margin-top:15px"><button onclick="saveProduct()">Save Beer</button><button class="secondary" onclick="closeModal()">Cancel</button></div>
+</div></div>
+
 <script>
-const KEY='bnb_bar_v3';
-const defaults=[['Bud Magnum',300],['Bud Premium',250],['Corona',250],['Tuborg',250],['Carlsberg',290],['Kingfisher Premium',200],['Kingfisher Strong',250],['UB Strong',250],['Breezer',200],['BuzzBall',180]];
-let db=JSON.parse(localStorage.getItem(KEY)||'null')||{products:[],purchases:[],sales:[]};
-if(!db.products.length)db.products=defaults.map((x,i)=>({id:Date.now()+i,name:x[0],sell:x[1],cost:0,stock:0,min:5}));
-function save(){localStorage.setItem(KEY,JSON.stringify(db));renderAll()}function money(n){return'₹'+Number(n||0).toLocaleString('en-IN',{maximumFractionDigits:2})}
-function esc(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
-function showView(id,btn){document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));btn.classList.add('active');renderAll()}
-function openModal(html){document.getElementById('modalBox').innerHTML=html;document.getElementById('modal').classList.add('show')}function closeModal(){document.getElementById('modal').classList.remove('show')}
-document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});
-function openProduct(id=null){const p=id?db.products.find(x=>x.id===id):{name:'',sell:'',cost:'',stock:0,min:5};openModal(`<h2>${id?'Edit beer':'Add beer'}</h2><div class="field"><label>Beer / product name</label><input id="pname" value="${esc(p.name)}"></div><div class="field"><label>Selling price per bottle</label><input id="psell" type="number" min="0" value="${p.sell}"></div><div class="field"><label>Purchase price per bottle</label><input id="pcost" type="number" min="0" value="${p.cost||''}" placeholder="Enter when known"></div><div class="field"><label>Current stock (bottles)</label><input id="pstock" type="number" min="0" value="${p.stock||0}"></div><div class="field"><label>Low-stock alert at</label><input id="pmin" type="number" min="0" value="${p.min??5}"></div><div class="actions"><button onclick="saveProduct(${id||'null'})">Save</button><button class="secondary" onclick="closeModal()">Cancel</button>${id?`<button class="danger" onclick="deleteProduct(${id})">Delete</button>`:''}</div>`)}
-function saveProduct(id){const name=pname.value.trim(),sell=Number(psell.value),cost=Number(pcost.value||0),stock=Number(pstock.value||0),min=Number(pmin.value||0);if(!name)return alert('Please enter a product name.');if(id){let p=db.products.find(x=>x.id===id);Object.assign(p,{name,sell,cost,stock,min})}else db.products.push({id:Date.now(),name,sell,cost,stock,min});closeModal();save()}
-function deleteProduct(id){if(confirm('Delete this product from inventory? Existing sales/purchases remain in reports.')){db.products=db.products.filter(x=>x.id!==id);closeModal();save()}}
-function openPurchase(){if(!db.products.length)return alert('Add a beer first.');openModal(`<h2>Purchase stock</h2><div class="field"><label>Beer</label><select id="pprod">${db.products.map(p=>`<option value="${p.id}">${esc(p.name)}</option>`).join('')}</select></div><div class="field"><label>Quantity (bottles)</label><input id="pqty" type="number" min="1" value="1"></div><div class="field"><label>Purchase price per bottle</label><input id="pcost2" type="number" min="0" placeholder="Enter purchase cost"></div><div class="field"><label>Date</label><input id="pdate" type="date" value="${new Date().toISOString().slice(0,10)}"></div><div class="actions"><button onclick="savePurchase()">Save purchase</button><button class="secondary" onclick="closeModal()">Cancel</button></div>`)}
-function savePurchase(){const id=Number(pprod.value),qty=Number(pqty.value),cost=Number(pcost2.value||0),date=pdate.value,p=db.products.find(x=>x.id===id);if(!p||qty<=0)return alert('Check the quantity.');p.stock+=qty;if(cost)p.cost=cost;db.purchases.unshift({id:Date.now(),productId:id,qty,cost,date});closeModal();save()}
-function openSale(){if(!db.products.length)return alert('Add a beer first.');openModal(`<h2>Record sale / order</h2><div class="field"><label>Beer</label><select id="sprod" onchange="updateSalePrice()">${db.products.map(p=>`<option value="${p.id}">${esc(p.name)}</option>`).join('')}</select></div><div class="field"><label>Quantity (bottles)</label><input id="sqty" type="number" min="1" value="1"></div><div class="field"><label>Selling price per bottle</label><input id="ssell" type="number" min="0" value="${db.products[0]?.sell||0}"></div><div class="field"><label>Customer / order note (optional)</label><input id="snote"></div><div class="field"><label>Date</label><input id="sdate" type="date" value="${new Date().toISOString().slice(0,10)}"></div><div class="actions"><button onclick="saveSale()">Save sale</button><button class="secondary" onclick="closeModal()">Cancel</button></div>`)}
-function updateSalePrice(){let p=db.products.find(x=>x.id===Number(sprod.value));ssell.value=p?.sell||0}
-function saveSale(){const id=Number(sprod.value),qty=Number(sqty.value),sell=Number(ssell.value||0),note=snote.value.trim(),date=sdate.value,p=db.products.find(x=>x.id===id);if(!p||qty<=0)return alert('Check the quantity.');if(qty>p.stock&&!confirm('Stock is lower than this sale. Record anyway?'))return;p.stock-=qty;db.sales.unshift({id:Date.now(),productId:id,qty,sell,cost:p.cost||0,note,date});closeModal();save()}
-function editSale(id){const s=db.sales.find(x=>x.id===id);openModal(`<h2>Edit sale</h2><div class="field"><label>Quantity</label><input id="esqty" type="number" min="1" value="${s.qty}"></div><div class="field"><label>Selling price</label><input id="essell" type="number" min="0" value="${s.sell}"></div><div class="field"><label>Note</label><input id="esnote" value="${esc(s.note||'')}"></div><div class="actions"><button onclick="saveSaleEdit(${id})">Save</button><button class="secondary" onclick="closeModal()">Cancel</button><button class="danger" onclick="deleteSale(${id})">Delete</button></div>`)}
-function saveSaleEdit(id){let s=db.sales.find(x=>x.id===id),p=db.products.find(x=>x.id===s.productId),q=Number(esqty.value);if(!q)return;let sell=Number(essell.value||0);p.stock+=s.qty-q;s.qty=q;s.sell=sell;s.note=esnote.value;closeModal();save()}
-function deleteSale(id){let s=db.sales.find(x=>x.id===id);if(confirm('Delete this sale?')){let p=db.products.find(x=>x.id===s.productId);if(p)p.stock+=s.qty;db.sales=db.sales.filter(x=>x.id!==id);closeModal();save()}}
-function editPurchase(id){const x=db.purchases.find(y=>y.id===id);openModal(`<h2>Edit purchase</h2><div class="field"><label>Quantity</label><input id="epqty" type="number" min="1" value="${x.qty}"></div><div class="field"><label>Purchase price</label><input id="epcost" type="number" min="0" value="${x.cost}"></div><div class="actions"><button onclick="savePurchaseEdit(${id})">Save</button><button class="secondary" onclick="closeModal()">Cancel</button><button class="danger" onclick="deletePurchase(${id})">Delete</button></div>`)}
-function savePurchaseEdit(id){let x=db.purchases.find(y=>y.id===id),p=db.products.find(y=>y.id===x.productId),q=Number(epqty.value),cost=Number(epcost.value||0);p.stock+=q-x.qty;x.qty=q;x.cost=cost;if(cost)p.cost=cost;closeModal();save()}
-function deletePurchase(id){let x=db.purchases.find(y=>y.id===id);if(confirm('Delete this purchase?')){let p=db.products.find(y=>y.id===x.productId);if(p)p.stock-=x.qty;db.purchases=db.purchases.filter(y=>y.id!==id);closeModal();save()}}
-function renderDashboard(){let stock=db.products.reduce((a,p)=>a+p.stock,0),sales=db.sales.reduce((a,s)=>a+s.qty*s.sell,0),profit=db.sales.reduce((a,s)=>a+s.qty*(s.sell-s.cost),0);dashProducts.textContent=db.products.length;dashStock.textContent=stock;dashSales.textContent=money(sales);dashProfit.textContent=money(profit);let low=db.products.filter(p=>p.stock<=p.min);lowStock.innerHTML=low.length?low.map(p=>`<div class="row between" style="padding:8px 0"><span>${esc(p.name)}</span><span class="badge low">${p.stock} left</span></div>`).join(''):'<div class="empty">No low-stock beers 🎉</div>'}
-function renderInventory(){let q=(document.getElementById('search')?.value||'').toLowerCase(),arr=db.products.filter(p=>p.name.toLowerCase().includes(q));inventoryList.innerHTML=arr.map(p=>`<div class="card"><div class="row between"><div><h3 style="margin:0 0 5px">${esc(p.name)}</h3><span class="badge ${p.stock<=p.min?'low':'good'}">${p.stock} bottles</span></div><button class="small secondary" onclick="openProduct(${p.id})">Edit</button></div><hr><div class="grid"><div><div class="label">Selling</div><b>${money(p.sell)}</b></div><div><div class="label">Purchase cost</div><b>${p.cost?money(p.cost):'Not set'}</b></div><div><div class="label">Stock value</div><b>${money(p.stock*(p.cost||0))}</b></div><div><div class="label">Potential sales</div><b>${money(p.stock*p.sell)}</b></div></div></div>`).join('')||'<div class="empty">No beers found.</div>'}
-function renderPurchases(){purchaseList.innerHTML=db.purchases.length?`<div class="card"><table><tr><th>Date</th><th>Beer</th><th>Qty</th><th>Cost</th><th></th></tr>${db.purchases.map(x=>{let p=db.products.find(y=>y.id===x.productId);return `<tr><td>${x.date}</td><td>${esc(p?.name||'Deleted')}</td><td>${x.qty}</td><td>${money(x.cost*x.qty)}</td><td><button class="small secondary" onclick="editPurchase(${x.id})">Edit</button></td></tr>`}).join('')}</table></div>`:'<div class="empty">No purchases yet.</div>'}
-function renderSales(){salesList.innerHTML=db.sales.length?`<div class="card"><table><tr><th>Date</th><th>Beer</th><th>Qty</th><th>Sales</th><th>Profit</th><th></th></tr>${db.sales.map(x=>{let p=db.products.find(y=>y.id===x.productId),pr=x.qty*(x.sell-x.cost);return `<tr><td>${x.date}</td><td>${esc(p?.name||'Deleted')}</td><td>${x.qty}</td><td>${money(x.qty*x.sell)}</td><td class="${pr>=0?'profit':'loss'}">${money(pr)}</td><td><button class="small secondary" onclick="editSale(${x.id})">Edit</button></td></tr>`}).join('')}</table></div>`:'<div class="empty">No sales yet.</div>'}
-function renderAll(){renderDashboard();renderInventory();renderPurchases();renderSales()}
-function csv(rows){return rows.map(r=>r.map(v=>`"${String(v??'').replace(/"/g,'""')}"`).join(',')).join('\n')}
-function dl(name,text,type='text/plain'){let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500)}
-function downloadBackup(){dl('bnb-bar-backup.json',JSON.stringify(db,null,2),'application/json')}
-function downloadCSV(type){let rows=[];if(type==='inventory')rows=[['Product','Selling Price','Purchase Cost','Stock','Low Stock Alert'],...db.products.map(p=>[p.name,p.sell,p.cost,p.stock,p.min])];if(type==='sales')rows=[['Date','Product','Quantity','Selling Price','Purchase Cost','Sales Value','Profit','Note'],...db.sales.map(s=>[s.date,db.products.find(p=>p.id===s.productId)?.name||'Deleted',s.qty,s.sell,s.cost,s.qty*s.sell,s.qty*(s.sell-s.cost),s.note||''])];if(type==='purchases')rows=[['Date','Product','Quantity','Purchase Price','Total'],...db.purchases.map(s=>[s.date,db.products.find(p=>p.id===s.productId)?.name||'Deleted',s.qty,s.cost,s.qty*s.cost])];dl('bnb-bar-'+type+'.csv',csv(rows),'text/csv')}
-function resetAll(){if(confirm('This will permanently clear inventory, purchases and sales on this device. Continue?')){localStorage.removeItem(KEY);location.reload()}}
-renderAll();
+const rates={"Bud Magnum":300,"Bud Premium":250,"Corona":250,"Tuborg":250,"Carlsberg":290,"Kingfisher Premium":200,"Kingfisher Strong":250,"UB Strong":250,"Breezer":200,"BuzzBall":180};
+const key="bnb_bar_v3";
+let data=JSON.parse(localStorage.getItem(key)||"null")||{products:[],purchases:[],orders:[]};
+if(!data.products.length){data.products=Object.entries(rates).map(([name,sell])=>({id:crypto.randomUUID(),name,stock:0,buy:0,sell,low:5}));save()}
+function save(){localStorage.setItem(key,JSON.stringify(data));render()}
+function money(n){return "₹"+Number(n||0).toLocaleString("en-IN",{maximumFractionDigits:2})}
+function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function nav(){document.getElementById("nav").innerHTML=[["dashboard","Dashboard"],["inventory","Inventory"],["purchases","Purchases"],["orders","Orders"],["reports","Reports"]].map(x=>`<button onclick="show('${x[0]}')">${x[1]}</button>`).join("")}
+function show(id){document.querySelectorAll(".view").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");render();if(id==="reports")renderReport();scrollTo(0,0)}
+function populate(){["purchaseProduct","orderProduct"].forEach(id=>{let s=document.getElementById(id),old=s.value;s.innerHTML=data.products.map(p=>`<option value="${p.id}">${esc(p.name)}</option>`).join("");if(old)s.value=old});document.getElementById("purchaseDate").value ||= new Date().toISOString().slice(0,10);document.getElementById("orderDate").value ||= new Date().toISOString().slice(0,10);syncPrices()}
+function syncPrices(){let p=data.products.find(x=>x.id===document.getElementById("orderProduct").value);if(p)document.getElementById("orderPrice").value=p.sell||"";let q=data.products.find(x=>x.id===document.getElementById("purchaseProduct").value);if(q)document.getElementById("purchasePrice").value=q.buy||""}
+function render(){nav();populate();
+let units=data.products.reduce((a,p)=>a+Number(p.stock||0),0),sales=data.orders.reduce((a,o)=>a+o.qty*o.price,0),cost=data.orders.reduce((a,o)=>a+o.qty*o.buy,0),profit=sales-cost;
+document.getElementById("stats").innerHTML=`<div class="stat"><span class="label">Beer types</span><b>${data.products.length}</b></div><div class="stat"><span class="label">Bottles in stock</span><b>${units}</b></div><div class="stat"><span class="label">Sales</span><b>${money(sales)}</b></div><div class="stat"><span class="label">Profit</span><b class="profit">${money(profit)}</b></div>`;
+let lows=data.products.filter(p=>p.stock<=p.low);document.getElementById("lowstock").innerHTML=lows.length?lows.map(p=>`<div class="item"><span>${esc(p.name)} <span class="pill low">${p.stock} left</span></span><button onclick="quickStock('${p.id}',5)">+5</button></div>`).join(""):`<div class="empty">No low-stock beers 🎉</div>`;
+document.getElementById("productRows").innerHTML=data.products.length?data.products.map(p=>`<tr><td><b>${esc(p.name)}</b></td><td><span class="pill ${p.stock<=p.low?"low":""}">${p.stock}</span></td><td>${p.buy?money(p.buy):"—"}</td><td>${p.sell?money(p.sell):"—"}</td><td class="profit">${money((p.sell||0)-(p.buy||0))}</td><td><div class="actions"><button onclick="quickStock('${p.id}',1)">+1</button><button class="secondary" onclick="editProduct('${p.id}')">Edit</button><button class="danger" onclick="deleteProduct('${p.id}')">Delete</button></div></td></tr>`).join(""):`<tr><td colspan="6" class="empty">No beers yet. Add your first beer.</td></tr>`;
+document.getElementById("purchaseList").innerHTML=data.purchases.length?[...data.purchases].reverse().map(x=>`<div class="item"><span><b>${esc(x.name)}</b> × ${x.qty}<br><span class="label">${x.date} • ${money(x.price)}/bottle</span></span><button class="danger" onclick="deletePurchase('${x.id}')">Delete</button></div>`).join(""):`<div class="empty">No purchases recorded.</div>`;
+document.getElementById("orderList").innerHTML=data.orders.length?[...data.orders].reverse().map(x=>`<div class="item"><span><b>${esc(x.name)}</b> × ${x.qty} = ${money(x.qty*x.price)}<br><span class="label">${x.date} • Profit ${money(x.qty*(x.price-x.buy))}</span></span><button class="danger" onclick="deleteOrder('${x.id}')">Delete</button></div>`).join(""):`<div class="empty">No sales recorded.</div>`;
+}
+function openProductForm(){editing=null;document.getElementById("modalTitle").textContent="Add Beer";["pName","pBuy","pSell"].forEach(x=>document.getElementById(x).value="");document.getElementById("pStock").value=0;document.getElementById("pLow").value=5;document.getElementById("modal").style.display="block"}
+let editing=null;
+function editProduct(id){let p=data.products.find(x=>x.id===id);editing=id;document.getElementById("modalTitle").textContent="Edit Beer";document.getElementById("pName").value=p.name;document.getElementById("pStock").value=p.stock;document.getElementById("pBuy").value=p.buy||"";document.getElementById("pSell").value=p.sell||"";document.getElementById("pLow").value=p.low;document.getElementById("modal").style.display="block"}
+function closeModal(){document.getElementById("modal").style.display="none"}
+function saveProduct(){let name=document.getElementById("pName").value.trim();if(!name)return alert("Enter a beer name.");let obj={name,stock:+document.getElementById("pStock").value||0,buy:+document.getElementById("pBuy").value||0,sell:+document.getElementById("pSell").value||0,low:+document.getElementById("pLow").value||0};if(editing)Object.assign(data.products.find(x=>x.id===editing),obj);else data.products.push({id:crypto.randomUUID(),...obj});closeModal();save()}
+function deleteProduct(id){let p=data.products.find(x=>x.id===id);if(confirm(`Delete ${p.name}?`)){data.products=data.products.filter(x=>x.id!==id);save()}}
+function quickStock(id,n){let p=data.products.find(x=>x.id===id);p.stock+=n;save()}
+function savePurchase(){let p=data.products.find(x=>x.id===purchaseProduct.value),qty=+purchaseQty.value,price=+purchasePrice.value;if(!p||qty<1)return alert("Choose beer and quantity.");if(price<=0)return alert("Enter purchase price.");p.stock+=qty;p.buy=price;data.purchases.push({id:crypto.randomUUID(),name:p.name,qty,price,date:purchaseDate.value||new Date().toISOString().slice(0,10),note:purchaseNote.value});purchaseQty.value=1;purchaseNote.value="";save();show("purchases")}
+function saveOrder(){let p=data.products.find(x=>x.id===orderProduct.value),qty=+orderQty.value,price=+orderPrice.value;if(!p||qty<1)return alert("Choose beer and quantity.");if(price<=0)return alert("Enter selling price.");if(p.stock<qty)return alert(`Only ${p.stock} bottles of ${p.name} are in stock.`);p.stock-=qty;data.orders.push({id:crypto.randomUUID(),name:p.name,qty,price,buy:p.buy||0,date:orderDate.value||new Date().toISOString().slice(0,10),note:orderNote.value});orderQty.value=1;orderNote.value="";save();show("orders")}
+function deletePurchase(id){if(!confirm("Delete this purchase? This will not automatically change stock."))return;data.purchases=data.purchases.filter(x=>x.id!==id);save()}
+function deleteOrder(id){if(!confirm("Delete this sale? This will not automatically return stock."))return;data.orders=data.orders.filter(x=>x.id!==id);save()}
+function setReportDates(){document.getElementById("reportFrom").value="";document.getElementById("reportTo").value="";renderReport()}
+function inReportRange(date){let f=document.getElementById("reportFrom")?.value||"",t=document.getElementById("reportTo")?.value||"";return (!f||date>=f)&&(!t||date<=t)}
+function renderReport(){let out=document.getElementById("reportOutput");if(!out)return;let type=document.getElementById("reportType").value;let orders=data.orders.filter(x=>inReportRange(x.date));let purchases=data.purchases.filter(x=>inReportRange(x.date));let revenue=orders.reduce((a,x)=>a+x.qty*x.price,0),cost=orders.reduce((a,x)=>a+x.qty*x.buy,0),profit=revenue-cost,units=orders.reduce((a,x)=>a+x.qty,0);let from=document.getElementById("reportFrom").value||"All",to=document.getElementById("reportTo").value||"Dates";let html=`<div class="report-print"><h3 class="report-title">BnB Tonic Report</h3><div class="label">${from} → ${to}</div>`;
+if(type==="summary"){html+=`<div class="report-grid"><div class="report-stat"><span class="label">Sales</span><b>${money(revenue)}</b></div><div class="report-stat"><span class="label">Cost of sold stock</span><b>${money(cost)}</b></div><div class="report-stat"><span class="label">Profit</span><b class="profit">${money(profit)}</b></div><div class="report-stat"><span class="label">Bottles sold</span><b>${units}</b></div></div><div class="tablewrap"><table class="table"><thead><tr><th>Date</th><th>Beer</th><th>Qty</th><th>Revenue</th><th>Profit</th></tr></thead><tbody>${orders.length?orders.map(x=>`<tr><td>${esc(x.date)}</td><td>${esc(x.name)}</td><td>${x.qty}</td><td>${money(x.qty*x.price)}</td><td class="profit">${money(x.qty*(x.price-x.buy))}</td></tr>`).join(""): `<tr><td colspan="5" class="empty">No sales in this period.</td></tr>`}</tbody></table></div>`}
+else if(type==="sales"){let m={};orders.forEach(x=>{m[x.name]??={qty:0,revenue:0,profit:0};m[x.name].qty+=x.qty;m[x.name].revenue+=x.qty*x.price;m[x.name].profit+=x.qty*(x.price-x.buy)});html+=`<div class="tablewrap"><table class="table"><thead><tr><th>Beer</th><th>Bottles sold</th><th>Revenue</th><th>Profit</th></tr></thead><tbody>${Object.keys(m).length?Object.entries(m).map(([n,v])=>`<tr><td><b>${esc(n)}</b></td><td>${v.qty}</td><td>${money(v.revenue)}</td><td class="profit">${money(v.profit)}</td></tr>`).join(""):`<tr><td colspan="4" class="empty">No sales in this period.</td></tr>`}</tbody></table></div>`}
+else if(type==="purchases"){let m={};purchases.forEach(x=>{m[x.name]??={qty:0,cost:0};m[x.name].qty+=x.qty;m[x.name].cost+=x.qty*x.price});html+=`<div class="tablewrap"><table class="table"><thead><tr><th>Beer</th><th>Bottles purchased</th><th>Purchase cost</th></tr></thead><tbody>${Object.keys(m).length?Object.entries(m).map(([n,v])=>`<tr><td><b>${esc(n)}</b></td><td>${v.qty}</td><td>${money(v.cost)}</td></tr>`).join(""):`<tr><td colspan="3" class="empty">No purchases in this period.</td></tr>`}</tbody></table></div>`}
+else {html+=`<div class="tablewrap"><table class="table"><thead><tr><th>Beer</th><th>Stock</th><th>Buy ₹</th><th>Sell ₹</th><th>Profit/bottle</th></tr></thead><tbody>${data.products.length?data.products.map(p=>`<tr><td><b>${esc(p.name)}</b></td><td>${p.stock}</td><td>${p.buy?money(p.buy):"—"}</td><td>${p.sell?money(p.sell):"—"}</td><td class="profit">${money((p.sell||0)-(p.buy||0))}</td></tr>`).join(""):`<tr><td colspan="5" class="empty">No inventory.</td></tr>`}</tbody></table></div>`}
+out.innerHTML=html+`</div>`}
+function printReport(){renderReport();setTimeout(()=>window.print(),50)}
+function csv(rows){return rows.map(r=>r.map(v=>`"${String(v??"").replace(/"/g,'""')}"`).join(",")).join("\n")}
+function exportCSV(type){let rows;if(type==="inventory")rows=[["Beer","Stock","Purchase Price","Selling Price","Profit/Bottle"],...data.products.map(p=>[p.name,p.stock,p.buy,p.sell,(p.sell||0)-(p.buy||0)])];else if(type==="purchases")rows=[["Date","Beer","Quantity","Purchase Price"],...data.purchases.map(x=>[x.date,x.name,x.qty,x.price])];else rows=[["Date","Beer","Quantity","Selling Price","Purchase Cost","Revenue","Profit"],...data.orders.map(x=>[x.date,x.name,x.qty,x.price,x.buy,x.qty*x.price,x.qty*(x.price-x.buy)])];let a=document.createElement("a");a.href=URL.createObjectURL(new Blob([csv(rows)],{type:"text/csv"}));a.download=`bnb-${type}.csv`;a.click()}
+function backup(){let a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:"application/json"}));a.download="bnb-bar-backup.json";a.click()}
+function restore(file){if(!file)return;let r=new FileReader();r.onload=()=>{try{data=JSON.parse(r.result);save();alert("Backup restored.")}catch(e){alert("Invalid backup file.")}};r.readAsText(file)}
+document.getElementById("orderProduct").addEventListener("change",syncPrices);document.getElementById("purchaseProduct").addEventListener("change",syncPrices);
+render();
 </script>
 </body></html>
