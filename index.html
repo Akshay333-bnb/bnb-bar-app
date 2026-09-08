@@ -10,8 +10,10 @@
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 header{background:linear-gradient(145deg,#251711,#8a5b43);color:white;padding:22px 18px 18px;position:sticky;top:0;z-index:5}
 .brand{font-family:Georgia,serif;font-size:27px;letter-spacing:.5px}.sub{opacity:.8;font-size:12px;margin-top:3px}
-nav{display:flex;gap:7px;overflow:auto;margin-top:18px}nav button{border:1px solid #ffffff40;background:#ffffff15;color:#fff;border-radius:18px;padding:9px 13px;white-space:nowrap}nav button.active{background:#fff;color:#4b3022}
-main{max-width:900px;margin:auto;padding:16px}.view{display:none}.view.active{display:block}
+nav{position:fixed;left:0;right:0;bottom:0;height:70px;display:grid;grid-template-columns:repeat(5,1fr);gap:0;background:#251711;border-top:1px solid #ffffff20;z-index:15;padding-bottom:env(safe-area-inset-bottom);box-shadow:0 -4px 16px #0003}
+nav button{border:0;border-radius:0;background:transparent;color:#d9c9bd;padding:7px 2px;font-size:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;white-space:nowrap}
+nav button.active{background:#8a5b43;color:#fff;font-weight:700}
+main{max-width:900px;margin:auto;padding:16px;padding-bottom:92px}.view{display:none}.view.active{display:block}
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.stat,.card{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:15px;box-shadow:0 3px 12px #00000008}.stat b{display:block;font-size:25px;margin-top:4px}.label{color:var(--muted);font-size:12px}
 h2{font-family:Georgia,serif;margin:8px 0 14px}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
 button,.btn{font:inherit;cursor:pointer;border:0;border-radius:10px;padding:10px 13px;background:var(--accent);color:#fff}.secondary{background:#eadfd5;color:var(--ink)}.danger{background:var(--danger)}.ok{background:var(--ok)}
@@ -111,8 +113,9 @@ if(!data.products.length){data.products=Object.entries(rates).map(([name,sell])=
 function save(){localStorage.setItem(key,JSON.stringify(data));render()}
 function money(n){return "₹"+Number(n||0).toLocaleString("en-IN",{maximumFractionDigits:2})}
 function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
-function nav(){document.getElementById("nav").innerHTML=[["dashboard","Dashboard"],["inventory","Inventory"],["purchases","Purchases"],["orders","Orders"],["reports","Reports"]].map(x=>`<button onclick="show('${x[0]}')">${x[1]}</button>`).join("")}
-function show(id){document.querySelectorAll(".view").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");render();if(id==="reports")renderReport();scrollTo(0,0)}
+let currentView="dashboard";
+function nav(){const items=[["dashboard","⌂","Dashboard"],["inventory","▣","Inventory"],["purchases","＋","Purchases"],["orders","₹","Sales"],["reports","▤","Reports"]];document.getElementById("nav").innerHTML=items.map(([id,icon,label])=>`<button class="${id===currentView?"active":""}" onclick="show('${id}')" aria-label="${label}"><span style="font-size:20px;line-height:18px">${icon}</span><span>${label}</span></button>`).join("")}
+function show(id){currentView=id;document.querySelectorAll(".view").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");render();if(id==="reports")renderReport();scrollTo(0,0)}
 function populate(){["purchaseProduct","orderProduct"].forEach(id=>{let s=document.getElementById(id),old=s.value;s.innerHTML=data.products.map(p=>`<option value="${p.id}">${esc(p.name)}</option>`).join("");if(old)s.value=old});document.getElementById("purchaseDate").value ||= new Date().toISOString().slice(0,10);document.getElementById("orderDate").value ||= new Date().toISOString().slice(0,10);syncPrices()}
 function syncPrices(){let p=data.products.find(x=>x.id===document.getElementById("orderProduct").value);if(p)document.getElementById("orderPrice").value=p.sell||"";let q=data.products.find(x=>x.id===document.getElementById("purchaseProduct").value);if(q)document.getElementById("purchasePrice").value=q.buy||""}
 function render(){nav();populate();
