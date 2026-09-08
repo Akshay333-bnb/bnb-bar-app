@@ -10,17 +10,18 @@
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 header{background:linear-gradient(145deg,#251711,#8a5b43);color:white;padding:22px 18px 18px;position:sticky;top:0;z-index:5}
 .brand{font-family:Georgia,serif;font-size:27px;letter-spacing:.5px}.sub{opacity:.8;font-size:12px;margin-top:3px}
-nav{position:fixed;left:0;right:0;bottom:0;height:72px;display:grid;grid-template-columns:repeat(5,1fr);align-items:center;gap:0;background:#2b1a12;border-top:1px solid rgba(255,255,255,.10);z-index:15;padding:4px 4px calc(4px + env(safe-area-inset-bottom));box-shadow:0 -5px 18px rgba(44,25,15,.22)}
-nav button{position:relative;border:0;border-radius:12px;background:transparent;color:#d9c9bd;padding:5px 2px;font-size:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;white-space:nowrap;transition:transform .18s ease,background .18s ease}
-nav button .nav-icon{width:24px;height:24px;display:flex;align-items:center;justify-content:center}
-nav button .nav-icon svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-nav button.active{background:rgba(169,111,74,.82);color:#fff;font-weight:700}
+nav{position:fixed;left:0;right:0;bottom:10px;height:78px;display:grid;grid-template-columns:repeat(5,1fr);align-items:center;gap:2px;background:rgba(255,250,245,.96);border:1px solid rgba(154,101,70,.12);z-index:15;padding:6px 10px calc(6px + env(safe-area-inset-bottom));border-radius:38px;box-shadow:0 10px 30px rgba(65,38,24,.18);backdrop-filter:blur(14px)}
+nav button{position:relative;border:0;border-radius:20px;background:transparent;color:#3d3028;padding:5px 2px;font-size:10px;letter-spacing:.1px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;white-space:nowrap;transition:transform .18s ease,background .18s ease}
+nav button .nav-icon{width:25px;height:25px;display:flex;align-items:center;justify-content:center}
+nav button .nav-icon svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+nav button.active{background:#efe2d6;color:#633c27;font-weight:700}
 nav button.active .nav-icon{transform:translateY(-1px)}
-nav button:nth-child(3) .nav-icon{width:40px;height:40px;margin-top:-1px;border-radius:50%;background:#a96f4a;color:#fff;box-shadow:0 3px 10px rgba(0,0,0,.22)}
-nav button:nth-child(3) .nav-icon svg{width:24px;height:24px;stroke-width:2}
+nav button:nth-child(3){overflow:visible}
+nav button:nth-child(3) .nav-icon{width:58px;height:58px;margin-top:-30px;border-radius:50%;background:#a96f4a;color:#fff;box-shadow:0 7px 18px rgba(96,54,32,.28);border:5px solid #fffaf5}
+nav button:nth-child(3) .nav-icon svg{width:27px;height:27px;stroke-width:2.1}
 nav button:active{transform:scale(.94)}
-nav button:nth-child(3) span:last-child{margin-top:0}
-main{max-width:900px;margin:auto;padding:16px;padding-bottom:105px}.view{display:none}.view.active{display:block}
+nav button:nth-child(3) span:last-child{margin-top:-1px}
+main{max-width:900px;margin:auto;padding:16px;padding-bottom:120px}.view{display:none}.view.active{display:block}
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.stat,.card{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:15px;box-shadow:0 3px 12px #00000008}.stat b{display:block;font-size:25px;margin-top:4px}.label{color:var(--muted);font-size:12px}
 h2{font-family:Georgia,serif;margin:8px 0 14px}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
 button,.btn{font:inherit;cursor:pointer;border:0;border-radius:10px;padding:10px 13px;background:var(--accent);color:#fff}.secondary{background:#eadfd5;color:var(--ink)}.danger{background:var(--danger)}.ok{background:var(--ok)}
@@ -123,7 +124,7 @@ function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&l
 let currentView="dashboard";
 function nav(){const items=[
 ["dashboard",`<svg viewBox="0 0 24 24"><path d="M3 10.8 12 3l9 7.8"/><path d="M5.5 9.5V21h13V9.5"/><path d="M9.5 21v-6.5h5V21"/></svg>`,"Dashboard"],
-["inventory",`<svg viewBox="0 0 24 24"><path d="m12 3 7 4-7 4-7-4 7-4Z"/><path d="m5 12 7 4 7-4"/><path d="m5 16 7 4 7-4"/></svg>`,"Inventory"],
+["inventory",`<svg viewBox="0 0 24 24"><path d="M5 7h12v9a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V7Z"/><path d="M17 9h2a2 2 0 0 1 0 4h-2"/><path d="M7 5v2M11 5v2M15 5v2"/></svg>`,"Inventory"],
 ["purchases",`<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>`,"Purchases"],
 ["orders",`<svg viewBox="0 0 24 24"><path d="M5 7h14l-1 12H6L5 7Z"/><path d="M9 10V5a3 3 0 0 1 6 0v5"/><path d="M9 14h6"/></svg>`,"Sales"],
 ["reports",`<svg viewBox="0 0 24 24"><path d="M5 20V10M12 20V4M19 20v-7"/><path d="M3 20h18"/></svg>`,"Reports"]
